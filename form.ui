@@ -597,7 +597,76 @@
              </widget>
             </item>
             <item>
-             <layout class="QVBoxLayout" name="downloadListProgressLayout">
+             <widget class="QLabel" name="filenameFormatLabel">
+              <property name="text">
+               <string>文件格式</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="filenameFormatLineEdit"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="downloadingLayout">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" name="downloadListProgressLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="downloadListProgressInnerLayout">
+              <item>
+               <widget class="QLabel" name="downloadListProgressLabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>下载列表的下载进度</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QProgressBar" name="downloadListProgressBar">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="currentSongProgressLayout">
               <property name="leftMargin">
                <number>0</number>
               </property>
@@ -611,93 +680,47 @@
                <number>0</number>
               </property>
               <item>
-               <layout class="QHBoxLayout" name="downloadListProgressInnerLayout">
-                <item>
-                 <widget class="QLabel" name="downloadListProgressLabel">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string>下载列表的下载进度</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="downloadListProgressBar">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <widget class="QLabel" name="currentSongProgressLabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>当前歌曲的下载进度</string>
+                </property>
+               </widget>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="currentSongProgressLayout">
-                <property name="leftMargin">
+               <widget class="QProgressBar" name="currentSongProgressBar">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="value">
                  <number>0</number>
                 </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="currentSongProgressLabel">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string>当前歌曲的下载进度</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="currentSongProgressBar">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               </widget>
               </item>
              </layout>
             </item>
-            <item>
-             <widget class="QPushButton" name="startDownloadButton">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>开始下载！</string>
-              </property>
-             </widget>
-            </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="startDownloadButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>开始下载！</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>

@@ -320,6 +320,25 @@ class Ui_MainWindow(object):
 
         self.lyricsEncodingLayout.addWidget(self.fileSaveLocationToolButton)
 
+        self.filenameFormatLabel = QLabel(self.horizontalLayoutWidget)
+        self.filenameFormatLabel.setObjectName(u"filenameFormatLabel")
+
+        self.lyricsEncodingLayout.addWidget(self.filenameFormatLabel)
+
+        self.filenameFormatLineEdit = QLineEdit(self.horizontalLayoutWidget)
+        self.filenameFormatLineEdit.setObjectName(u"filenameFormatLineEdit")
+
+        self.lyricsEncodingLayout.addWidget(self.filenameFormatLineEdit)
+
+
+        self.downloadSettingsLayout.addLayout(self.lyricsEncodingLayout)
+
+
+        self.rightVerticalLayout.addLayout(self.downloadSettingsLayout)
+
+        self.downloadingLayout = QHBoxLayout()
+        self.downloadingLayout.setObjectName(u"downloadingLayout")
+        self.downloadingLayout.setContentsMargins(0, 0, 0, -1)
         self.downloadListProgressLayout = QVBoxLayout()
         self.downloadListProgressLayout.setObjectName(u"downloadListProgressLayout")
         self.downloadListProgressLayout.setContentsMargins(0, 0, 0, 0)
@@ -371,20 +390,17 @@ class Ui_MainWindow(object):
         self.downloadListProgressLayout.addLayout(self.currentSongProgressLayout)
 
 
-        self.lyricsEncodingLayout.addLayout(self.downloadListProgressLayout)
+        self.downloadingLayout.addLayout(self.downloadListProgressLayout)
 
         self.startDownloadButton = QPushButton(self.horizontalLayoutWidget)
         self.startDownloadButton.setObjectName(u"startDownloadButton")
         sizePolicy3.setHeightForWidth(self.startDownloadButton.sizePolicy().hasHeightForWidth())
         self.startDownloadButton.setSizePolicy(sizePolicy3)
 
-        self.lyricsEncodingLayout.addWidget(self.startDownloadButton)
+        self.downloadingLayout.addWidget(self.startDownloadButton)
 
 
-        self.downloadSettingsLayout.addLayout(self.lyricsEncodingLayout)
-
-
-        self.rightVerticalLayout.addLayout(self.downloadSettingsLayout)
+        self.rightVerticalLayout.addLayout(self.downloadingLayout)
 
 
         self.mainHorizontalLayout.addLayout(self.rightVerticalLayout)
@@ -452,6 +468,7 @@ class Ui_MainWindow(object):
         self.albumCoverSizeLabel.setText(QCoreApplication.translate("MainWindow", u"\u4e13\u8f91\u5c01\u9762\u5927\u5c0f", None))
         self.fileSaveLocationLabel.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u4fdd\u5b58\u4f4d\u7f6e", None))
         self.fileSaveLocationToolButton.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.filenameFormatLabel.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u683c\u5f0f", None))
         self.downloadListProgressLabel.setText(QCoreApplication.translate("MainWindow", u"\u4e0b\u8f7d\u5217\u8868\u7684\u4e0b\u8f7d\u8fdb\u5ea6", None))
         self.currentSongProgressLabel.setText(QCoreApplication.translate("MainWindow", u"\u5f53\u524d\u6b4c\u66f2\u7684\u4e0b\u8f7d\u8fdb\u5ea6", None))
         self.startDownloadButton.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb\u4e0b\u8f7d\uff01", None))
