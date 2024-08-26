@@ -51,6 +51,8 @@ class MainWindow(QMainWindow):
             False,
         )
         self.level = None
+        self.search_mode = self.ui.searchComboBox.currentIndex()
+        self.ui.searchComboBox.currentIndexChanged.connect(self.search_mode_change)
         self.ui.standardRadioButton.clicked.connect(self.set_level_standard)
         self.ui.higherRadioButton.clicked.connect(self.set_level_higher)
         self.ui.exhighRadioButton.clicked.connect(self.set_level_exhigh)
@@ -60,6 +62,10 @@ class MainWindow(QMainWindow):
         self.ui.albumCoverCheckBox.clicked.connect(self.status_update)
         self.ui.lyricsDownloadCheckBox.clicked.connect(self.status_update)
         self.cookie = {}
+
+    def search_mode_change(self):
+        self.search_mode = self.ui.searchComboBox.currentIndex()
+        print(self.search_mode)
 
     def set_level_standard(self):
         self.level = "standard"
