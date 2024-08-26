@@ -6,34 +6,64 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1100</width>
     <height>600</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1100</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>NeteaseDownloader</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="minimumSize">
     <size>
-     <width>1000</width>
+     <width>1100</width>
      <height>600</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>1000</width>
+     <width>1100</width>
      <height>600</height>
     </size>
    </property>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="mainFrame">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1000</width>
+      <width>1100</width>
       <height>600</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1100</width>
+      <height>600</height>
+     </size>
     </property>
     <property name="frameShape">
      <enum>QFrame::Shape::StyledPanel</enum>
@@ -46,11 +76,11 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1001</width>
+       <width>1101</width>
        <height>601</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="mainHorizontalLayout">
       <property name="spacing">
        <number>5</number>
       </property>
@@ -67,7 +97,7 @@
        <number>10</number>
       </property>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QVBoxLayout" name="leftVerticalLayout">
         <property name="spacing">
          <number>5</number>
         </property>
@@ -84,7 +114,7 @@
          <number>0</number>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
+         <layout class="QVBoxLayout" name="welcomeLayout">
           <property name="leftMargin">
            <number>0</number>
           </property>
@@ -98,7 +128,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_5">
+           <widget class="QLabel" name="welcomeLabel">
             <property name="text">
              <string>欢迎使用 NeteaseDownloader！Copyright@CooooldWind</string>
             </property>
@@ -107,7 +137,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QHBoxLayout" name="searchLayout">
           <property name="spacing">
            <number>5</number>
           </property>
@@ -124,7 +154,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QComboBox" name="comboBox">
+           <widget class="QComboBox" name="searchComboBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -133,12 +163,12 @@
             </property>
             <item>
              <property name="text">
-              <string>歌曲ID/Url</string>
+              <string>歌曲 ID/Url</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>歌单ID/Url</string>
+              <string>歌单 ID/Url</string>
              </property>
             </item>
             <item>
@@ -154,7 +184,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="searchLineEdit">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -164,7 +194,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="searchButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -179,7 +209,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableWidget" name="tableWidget">
+         <widget class="QTableWidget" name="resultTableWidget">
           <column>
            <property name="text">
             <string>ID</string>
@@ -203,7 +233,7 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <layout class="QHBoxLayout" name="selectionLayout">
           <property name="spacing">
            <number>5</number>
           </property>
@@ -220,14 +250,14 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="selectionLabel">
             <property name="text">
              <string>多项选择</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_2">
+           <widget class="QLineEdit" name="selectionLineEdit">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -243,14 +273,14 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="selectAllButton">
             <property name="text">
              <string>全部勾选</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="addToDownloadListButton">
             <property name="text">
              <string>添加到下载列表</string>
             </property>
@@ -261,7 +291,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="rightVerticalLayout">
         <property name="leftMargin">
          <number>0</number>
         </property>
@@ -275,7 +305,7 @@
          <number>0</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <layout class="QHBoxLayout" name="loginLayout">
           <property name="spacing">
            <number>5</number>
           </property>
@@ -292,24 +322,24 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="loginLabel">
             <property name="text">
              <string>您尚未登录！</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_3"/>
+           <widget class="QLineEdit" name="loginLineEdit"/>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="loginButton">
             <property name="text">
              <string>登录</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_5">
+           <widget class="QPushButton" name="browserLoginButton">
             <property name="text">
              <string>浏览器模拟登录</string>
             </property>
@@ -318,7 +348,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <layout class="QVBoxLayout" name="downloadListTitleLayout">
           <property name="leftMargin">
            <number>0</number>
           </property>
@@ -332,7 +362,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="downloadListLabel">
             <property name="text">
              <string>下载列表</string>
             </property>
@@ -341,7 +371,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableWidget" name="tableWidget_2">
+         <widget class="QTableWidget" name="downloadListTableWidget">
           <column>
            <property name="text">
             <string>ID</string>
@@ -365,7 +395,7 @@
          </widget>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QVBoxLayout" name="downloadSettingsLayout">
           <property name="leftMargin">
            <number>0</number>
           </property>
@@ -379,7 +409,7 @@
            <number>0</number>
           </property>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <layout class="QHBoxLayout" name="qualityLayout">
             <property name="spacing">
              <number>5</number>
             </property>
@@ -396,35 +426,35 @@
              <number>5</number>
             </property>
             <item>
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="qualityLabel">
               <property name="text">
                <string>音质</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton">
+             <widget class="QRadioButton" name="standardRadioButton">
               <property name="text">
                <string>标准(standard)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_2">
+             <widget class="QRadioButton" name="higherRadioButton">
               <property name="text">
                <string>较高(higher)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_3">
+             <widget class="QRadioButton" name="exhighRadioButton">
               <property name="text">
                <string>极高(exhigh)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_4">
+             <widget class="QRadioButton" name="losslessRadioButton">
               <property name="text">
                <string>无损(lossless)</string>
               </property>
@@ -433,7 +463,7 @@
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <layout class="QHBoxLayout" name="filePropertiesLayout">
             <property name="spacing">
              <number>5</number>
             </property>
@@ -450,35 +480,35 @@
              <number>5</number>
             </property>
             <item>
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="filePropertiesLabel">
               <property name="text">
                <string>文件属性</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox">
+             <widget class="QCheckBox" name="basicInfoCheckBox">
               <property name="text">
                <string>基本信息添加</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_2">
+             <widget class="QCheckBox" name="albumCoverCheckBox">
               <property name="text">
                <string>专辑封面添加</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_3">
+             <widget class="QCheckBox" name="lyricsDownloadCheckBox">
               <property name="text">
                <string>歌词下载</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_4">
+             <widget class="QCheckBox" name="lyricsAddCheckBox">
               <property name="text">
                <string>歌词添加</string>
               </property>
@@ -487,7 +517,7 @@
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <layout class="QHBoxLayout" name="lyricsEncodingLayout">
             <property name="spacing">
              <number>5</number>
             </property>
@@ -504,14 +534,14 @@
              <number>5</number>
             </property>
             <item>
-             <widget class="QLabel" name="label_7">
+             <widget class="QLabel" name="lyricsEncodingLabel">
               <property name="text">
                <string>歌词编码方式</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboBox_2">
+             <widget class="QComboBox" name="lyricsEncodingComboBox">
               <item>
                <property name="text">
                 <string>GBK</string>
@@ -530,14 +560,14 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_8">
+             <widget class="QLabel" name="albumCoverSizeLabel">
               <property name="text">
                <string>专辑封面大小</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="spinBox">
+             <widget class="QSpinBox" name="albumCoverSizeSpinBox">
               <property name="minimum">
                <number>100</number>
               </property>
@@ -550,43 +580,24 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_9">
+             <widget class="QLabel" name="fileSaveLocationLabel">
               <property name="text">
                <string>文件保存位置</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_4"/>
+             <widget class="QLineEdit" name="fileSaveLocationLineEdit"/>
             </item>
             <item>
-             <widget class="QToolButton" name="toolButton">
+             <widget class="QToolButton" name="fileSaveLocationToolButton">
               <property name="text">
                <string>...</string>
               </property>
              </widget>
             </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
-            <property name="spacing">
-             <number>5</number>
-            </property>
-            <property name="leftMargin">
-             <number>5</number>
-            </property>
-            <property name="topMargin">
-             <number>5</number>
-            </property>
-            <property name="rightMargin">
-             <number>5</number>
-            </property>
-            <property name="bottomMargin">
-             <number>5</number>
-            </property>
             <item>
-             <layout class="QVBoxLayout" name="verticalLayout_6">
+             <layout class="QVBoxLayout" name="downloadListProgressLayout">
               <property name="leftMargin">
                <number>0</number>
               </property>
@@ -600,9 +611,9 @@
                <number>0</number>
               </property>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_10">
+               <layout class="QHBoxLayout" name="downloadListProgressInnerLayout">
                 <item>
-                 <widget class="QLabel" name="label_10">
+                 <widget class="QLabel" name="downloadListProgressLabel">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                     <horstretch>0</horstretch>
@@ -615,7 +626,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QProgressBar" name="progressBar">
+                 <widget class="QProgressBar" name="downloadListProgressBar">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                     <horstretch>0</horstretch>
@@ -630,7 +641,7 @@
                </layout>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <layout class="QHBoxLayout" name="currentSongProgressLayout">
                 <property name="leftMargin">
                  <number>0</number>
                 </property>
@@ -644,7 +655,7 @@
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_11">
+                 <widget class="QLabel" name="currentSongProgressLabel">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                     <horstretch>0</horstretch>
@@ -657,7 +668,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QProgressBar" name="progressBar_2">
+                 <widget class="QProgressBar" name="currentSongProgressBar">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                     <horstretch>0</horstretch>
@@ -674,7 +685,7 @@
              </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_6">
+             <widget class="QPushButton" name="startDownloadButton">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>

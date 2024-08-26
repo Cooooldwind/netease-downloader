@@ -1,0 +1,46 @@
+QLabel：
+label_5：用于显示欢迎信息。
+label：用于多项选择的标签。
+label_3：显示未登录的提示信息。
+label_4：下载列表的标签。
+label_2：音质的标签。
+label_6：文件属性的标签。
+label_7：歌词编码方式的标签。
+label_8：专辑封面大小的标签。
+label_9：文件保存位置的标签。
+label_10：下载列表下载进度的标签。
+label_11：当前歌曲下载进度的标签。
+QComboBox：
+comboBox：包含四个选项，用于选择歌曲 ID/Url、歌单 ID/Url、搜索歌曲、搜索歌单。
+QLineEdit：
+lineEdit：与comboBox和pushButton配合使用，可能用于输入搜索内容。
+lineEdit_2：用于多项选择，具体功能不详。
+lineEdit_3：功能不详。
+lineEdit_4：功能不详。
+QPushButton：
+pushButton：用于搜索。
+pushButton_2：用于全部选择。
+pushButton_3：用于添加到下载列表。
+pushButton_4：用于登录。
+pushButton_5：用于浏览器模拟登录。
+pushButton_6：用于开始下载。
+QTableWidget：
+tableWidget：包含四列，用于显示相关信息，列标题分别为 ID、标题、歌手、专辑。
+tableWidget_2：功能类似tableWidget，可能用于显示下载列表的相关信息。
+QRadioButton：
+radioButton：音质选择为标准 (standard)。
+radioButton_2：音质选择为较高 (higher)。
+radioButton_3：音质选择为极高 (exhigh)。
+radioButton_4：音质选择为无损 (lossless)。
+QCheckBox：
+checkBox：基本信息添加。
+checkBox_2：专辑封面添加。
+checkBox_3：歌词下载。
+checkBox_4：歌词添加。
+QSpinBox：
+spinBox：用于设置专辑封面大小，范围为 100 到 2000，步长为 100。
+QToolButton：
+toolButton：用于文件保存位置的选择，显示为 “...”。
+QProgressBar：
+progressBar：用于显示下载列表的下载进度。
+progressBar_2：用于显示当前歌曲的下载进度。
