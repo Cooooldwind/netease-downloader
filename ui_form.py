@@ -57,17 +57,6 @@ class Ui_MainWindow(object):
         self.leftVerticalLayout.setSpacing(5)
         self.leftVerticalLayout.setObjectName(u"leftVerticalLayout")
         self.leftVerticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.welcomeLayout = QVBoxLayout()
-        self.welcomeLayout.setObjectName(u"welcomeLayout")
-        self.welcomeLayout.setContentsMargins(0, 0, 0, 0)
-        self.welcomeLabel = QLabel(self.horizontalLayoutWidget)
-        self.welcomeLabel.setObjectName(u"welcomeLabel")
-
-        self.welcomeLayout.addWidget(self.welcomeLabel)
-
-
-        self.leftVerticalLayout.addLayout(self.welcomeLayout)
-
         self.searchLayout = QHBoxLayout()
         self.searchLayout.setSpacing(5)
         self.searchLayout.setObjectName(u"searchLayout")
@@ -90,6 +79,7 @@ class Ui_MainWindow(object):
         self.searchLineEdit.setObjectName(u"searchLineEdit")
         sizePolicy1.setHeightForWidth(self.searchLineEdit.sizePolicy().hasHeightForWidth())
         self.searchLineEdit.setSizePolicy(sizePolicy1)
+        self.searchLineEdit.setMaxLength(500)
 
         self.searchLayout.addWidget(self.searchLineEdit)
 
@@ -121,12 +111,21 @@ class Ui_MainWindow(object):
 
         self.leftVerticalLayout.addWidget(self.resultTableWidget)
 
+        self.welcomeLayout = QVBoxLayout()
+        self.welcomeLayout.setObjectName(u"welcomeLayout")
+        self.welcomeLayout.setContentsMargins(0, 0, 0, 0)
+
+        self.leftVerticalLayout.addLayout(self.welcomeLayout)
+
         self.selectionLayout = QHBoxLayout()
         self.selectionLayout.setSpacing(5)
         self.selectionLayout.setObjectName(u"selectionLayout")
         self.selectionLayout.setContentsMargins(0, 0, 0, 0)
         self.selectionLabel = QLabel(self.horizontalLayoutWidget)
         self.selectionLabel.setObjectName(u"selectionLabel")
+        font = QFont()
+        font.setBold(True)
+        self.selectionLabel.setFont(font)
 
         self.selectionLayout.addWidget(self.selectionLabel)
 
@@ -149,6 +148,16 @@ class Ui_MainWindow(object):
 
         self.leftVerticalLayout.addLayout(self.selectionLayout)
 
+        self.versionLabel = QLabel(self.horizontalLayoutWidget)
+        self.versionLabel.setObjectName(u"versionLabel")
+        font1 = QFont()
+        font1.setWeight(QFont.Light)
+        font1.setItalic(False)
+        font1.setUnderline(False)
+        self.versionLabel.setFont(font1)
+
+        self.leftVerticalLayout.addWidget(self.versionLabel)
+
 
         self.mainHorizontalLayout.addLayout(self.leftVerticalLayout)
 
@@ -161,11 +170,14 @@ class Ui_MainWindow(object):
         self.loginLayout.setContentsMargins(0, 0, 0, 0)
         self.loginLabel = QLabel(self.horizontalLayoutWidget)
         self.loginLabel.setObjectName(u"loginLabel")
+        self.loginLabel.setFont(font)
 
         self.loginLayout.addWidget(self.loginLabel)
 
         self.loginLineEdit = QLineEdit(self.horizontalLayoutWidget)
         self.loginLineEdit.setObjectName(u"loginLineEdit")
+        self.loginLineEdit.setMaxLength(800)
+        self.loginLineEdit.setClearButtonEnabled(False)
 
         self.loginLayout.addWidget(self.loginLineEdit)
 
@@ -187,6 +199,7 @@ class Ui_MainWindow(object):
         self.downloadListTitleLayout.setContentsMargins(0, 0, 0, 0)
         self.downloadListLabel = QLabel(self.horizontalLayoutWidget)
         self.downloadListLabel.setObjectName(u"downloadListLabel")
+        self.downloadListLabel.setFont(font)
 
         self.downloadListTitleLayout.addWidget(self.downloadListLabel)
 
@@ -217,6 +230,7 @@ class Ui_MainWindow(object):
         self.qualityLayout.setContentsMargins(5, 5, 5, 5)
         self.qualityLabel = QLabel(self.horizontalLayoutWidget)
         self.qualityLabel.setObjectName(u"qualityLabel")
+        self.qualityLabel.setFont(font)
 
         self.qualityLayout.addWidget(self.qualityLabel)
 
@@ -249,6 +263,7 @@ class Ui_MainWindow(object):
         self.filePropertiesLayout.setContentsMargins(5, 5, 5, 5)
         self.filePropertiesLabel = QLabel(self.horizontalLayoutWidget)
         self.filePropertiesLabel.setObjectName(u"filePropertiesLabel")
+        self.filePropertiesLabel.setFont(font)
 
         self.filePropertiesLayout.addWidget(self.filePropertiesLabel)
 
@@ -281,6 +296,7 @@ class Ui_MainWindow(object):
         self.lyricsEncodingLayout.setContentsMargins(5, 5, 5, 5)
         self.lyricsEncodingLabel = QLabel(self.horizontalLayoutWidget)
         self.lyricsEncodingLabel.setObjectName(u"lyricsEncodingLabel")
+        self.lyricsEncodingLabel.setFont(font)
 
         self.lyricsEncodingLayout.addWidget(self.lyricsEncodingLabel)
 
@@ -294,6 +310,7 @@ class Ui_MainWindow(object):
 
         self.albumCoverSizeLabel = QLabel(self.horizontalLayoutWidget)
         self.albumCoverSizeLabel.setObjectName(u"albumCoverSizeLabel")
+        self.albumCoverSizeLabel.setFont(font)
 
         self.lyricsEncodingLayout.addWidget(self.albumCoverSizeLabel)
 
@@ -302,16 +319,19 @@ class Ui_MainWindow(object):
         self.albumCoverSizeSpinBox.setMinimum(100)
         self.albumCoverSizeSpinBox.setMaximum(2000)
         self.albumCoverSizeSpinBox.setSingleStep(100)
+        self.albumCoverSizeSpinBox.setValue(800)
 
         self.lyricsEncodingLayout.addWidget(self.albumCoverSizeSpinBox)
 
         self.fileSaveLocationLabel = QLabel(self.horizontalLayoutWidget)
         self.fileSaveLocationLabel.setObjectName(u"fileSaveLocationLabel")
+        self.fileSaveLocationLabel.setFont(font)
 
         self.lyricsEncodingLayout.addWidget(self.fileSaveLocationLabel)
 
         self.fileSaveLocationLineEdit = QLineEdit(self.horizontalLayoutWidget)
         self.fileSaveLocationLineEdit.setObjectName(u"fileSaveLocationLineEdit")
+        self.fileSaveLocationLineEdit.setMaxLength(200)
 
         self.lyricsEncodingLayout.addWidget(self.fileSaveLocationLineEdit)
 
@@ -322,6 +342,7 @@ class Ui_MainWindow(object):
 
         self.filenameFormatLabel = QLabel(self.horizontalLayoutWidget)
         self.filenameFormatLabel.setObjectName(u"filenameFormatLabel")
+        self.filenameFormatLabel.setFont(font)
 
         self.lyricsEncodingLayout.addWidget(self.filenameFormatLabel)
 
@@ -414,7 +435,6 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"NeteaseDownloader", None))
-        self.welcomeLabel.setText(QCoreApplication.translate("MainWindow", u"\u6b22\u8fce\u4f7f\u7528 NeteaseDownloader\uff01Copyright@CooooldWind", None))
         self.searchComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"\u6b4c\u66f2 ID/Url", None))
         self.searchComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"\u6b4c\u5355 ID/Url", None))
         self.searchComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"\u641c\u7d22\u6b4c\u66f2", None))
@@ -436,9 +456,12 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(accessibility)
         self.selectionLineEdit.setAccessibleName("")
 #endif // QT_CONFIG(accessibility)
+        self.selectionLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u5f62\u5982\"1,2\"\u548c\"1-3\" \u53ef\u6df7\u7528", None))
         self.selectAllButton.setText(QCoreApplication.translate("MainWindow", u"\u5168\u90e8\u52fe\u9009", None))
         self.addToDownloadListButton.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u5230\u4e0b\u8f7d\u5217\u8868", None))
+        self.versionLabel.setText(QCoreApplication.translate("MainWindow", u"NeteaseDownloader Ver.None by CooooldWind_", None))
         self.loginLabel.setText(QCoreApplication.translate("MainWindow", u"\u60a8\u5c1a\u672a\u767b\u5f55\uff01", None))
+        self.loginLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u7528\u6237Cookie - \u586b\u5165MUSIC_U\u5b57\u6bb5\u7684\u503c\u5373\u53ef", None))
         self.loginButton.setText(QCoreApplication.translate("MainWindow", u"\u767b\u5f55", None))
         self.browserLoginButton.setText(QCoreApplication.translate("MainWindow", u"\u6d4f\u89c8\u5668\u6a21\u62df\u767b\u5f55", None))
         self.downloadListLabel.setText(QCoreApplication.translate("MainWindow", u"\u4e0b\u8f7d\u5217\u8868", None))
