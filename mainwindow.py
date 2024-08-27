@@ -12,6 +12,8 @@ from netease_encode_api import EncodeSession
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_MainWindow
 from typing import List, Dict
+#temp
+from class163.playlist import Playlist
 
 
 class RefreshThread(QThread):
@@ -52,6 +54,8 @@ class MainWindow(QMainWindow):
         )
         self.level = None
         self.search_mode = self.ui.searchComboBox.currentIndex()
+        self.ui.searchButton.clicked.connect(self.search)
+        self.ui.searchLineEdit.returnPressed.connect(self.search)
         self.ui.searchComboBox.currentIndexChanged.connect(self.search_mode_change)
         self.ui.standardRadioButton.clicked.connect(self.set_level_standard)
         self.ui.higherRadioButton.clicked.connect(self.set_level_higher)
@@ -62,6 +66,18 @@ class MainWindow(QMainWindow):
         self.ui.albumCoverCheckBox.clicked.connect(self.status_update)
         self.ui.lyricsDownloadCheckBox.clicked.connect(self.status_update)
         self.cookie = {}
+
+    def search(self):
+        mode = self.search_mode
+        if mode == 1:
+            p = Playlist(self.ui.searchLineEdit.text())
+            p.get_detail()
+            for i in range(len(p.track)):
+                self.ui.resultTableWidget.setItem(row = i, column=0, item = p.track[i].id)
+                self.ui.resultTableWidget.setItem(row = i, column=1, item = p.track[i].title)
+                self.ui.resultTableWidget.setItem(row = i, column=2, item = p.track[i].artist)
+                self.ui.resultTableWidget.setItem(row = i, column=3, item = p.track[i].album)
+
 
     def search_mode_change(self):
         self.search_mode = self.ui.searchComboBox.currentIndex()
