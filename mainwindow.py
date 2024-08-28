@@ -3,17 +3,21 @@ import sys
 import time
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QThread, QEventLoop
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication, QTableWidgetItem
 from login import LoginSubWindow
 from netease_encode_api import EncodeSession
+
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_MainWindow
 from typing import List, Dict
-#temp
+
+# temp
 from class163.playlist import Playlist
+from pprint import pprint
+from class163.music import artist_join
 
 
 class RefreshThread(QThread):
@@ -27,14 +31,23 @@ class RefreshThread(QThread):
             time.sleep(0.05)
 
 
-class Event:
+class EventThread(QThread):
     def __init__(self):
+        super(EventThread, self).__init__()
         self.playlist = None
         self.song = None
         self.search_result = None
+        self.mode = None
+        self.text = None
+        self.result = None
+        self.encode_session: EncodeSession = None
 
-    def get(self):
-        pass
+    def run(self):
+        if self.mode == 1:
+            p = Playlist(self.text)
+            p.get_detail(session=self.encode_session)
+            self.result = p.info_dict()
+        return None
 
 
 class MainWindow(QMainWindow):
@@ -53,6 +66,8 @@ class MainWindow(QMainWindow):
             False,
         )
         self.level = None
+        self.event_thread = EventThread()
+        self.event_thread.finished.connect(self.update_result_table)
         self.search_mode = self.ui.searchComboBox.currentIndex()
         self.ui.searchButton.clicked.connect(self.search)
         self.ui.searchLineEdit.returnPressed.connect(self.search)
@@ -69,35 +84,59 @@ class MainWindow(QMainWindow):
 
     def search(self):
         mode = self.search_mode
-        if mode == 1:
-            p = Playlist(self.ui.searchLineEdit.text())
-            p.get_detail()
-            for i in range(len(p.track)):
-                self.ui.resultTableWidget.setItem(row = i, column=0, item = p.track[i].id)
-                self.ui.resultTableWidget.setItem(row = i, column=1, item = p.track[i].title)
-                self.ui.resultTableWidget.setItem(row = i, column=2, item = p.track[i].artist)
-                self.ui.resultTableWidget.setItem(row = i, column=3, item = p.track[i].album)
+        if mode not in [1]:
+            return None
+        else:
+            self.event_thread.mode = mode
+            self.event_thread.text = self.ui.searchLineEdit.text()
+            self.event_thread.encode_session = self.encode_session
+            self.event_thread.start()
+            self.ui.infoLabel.setText("正在获取歌单......")
+        """
+        event_thread.start()
+        while True:
+            result = event_thread.result
+            if result != None:
+                event_thread.result = None
+                break
+            else: 
+                self.update()
+                time.sleep(0.05)
+        """
 
+    def update_result_table(self):
+        result = self.event_thread.result
+        if self.search_mode == 1:
+            result = dict(result)
+            self.ui.resultTableWidget.setRowCount(int(result["track_count"]))
+            for i in range(int(result["track_count"])):
+                attribute_item = QTableWidgetItem(str(result["track_info"][i]["id"]))
+                self.ui.resultTableWidget.setItem(i, 0, attribute_item)
+                attribute_item = QTableWidgetItem(result["track_info"][i]["title"])
+                self.ui.resultTableWidget.setItem(i, 1, attribute_item)
+                attribute_item = QTableWidgetItem(artist_join(result["track_info"][i]["artist"],"/"))
+                self.ui.resultTableWidget.setItem(i, 2, attribute_item)
+                attribute_item = QTableWidgetItem(result["track_info"][i]["album"])
+                self.ui.resultTableWidget.setItem(i, 3, attribute_item)
+                self.update()
+            self.ui.infoLabel.setText(f"歌单 \"{result["title"]}\" 获取完成,，共 {str(result["track_count"])} 首歌曲。")
+            self.update()
+        return None
 
     def search_mode_change(self):
         self.search_mode = self.ui.searchComboBox.currentIndex()
-        print(self.search_mode)
 
     def set_level_standard(self):
         self.level = "standard"
-        print(self.level)
 
     def set_level_higher(self):
         self.level = "higher"
-        print(self.level)
 
     def set_level_exhigh(self):
         self.level = "exhigh"
-        print(self.level)
 
     def set_level_lossless(self):
         self.level = "lossless"
-        print(self.level)
 
     def status_update(self):
         self.basic_info, self.lyrics_add, self.album_cover, self.lyrics_download = (
@@ -106,7 +145,6 @@ class MainWindow(QMainWindow):
             self.ui.albumCoverCheckBox.isChecked(),
             self.ui.lyricsDownloadCheckBox.isChecked(),
         )
-        print(self.basic_info, self.lyrics_add, self.album_cover, self.lyrics_download)
 
     def set_cookie(self):
         self.cookie = {"MUSIC_U": self.ui.loginLineEdit.text()}

@@ -16,10 +16,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
-    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QMainWindow, QProgressBar, QPushButton, QRadioButton,
-    QSizePolicy, QSpinBox, QTableWidget, QTableWidgetItem,
-    QToolButton, QVBoxLayout, QWidget)
+    QHBoxLayout, QHeaderView, QLabel, QLayout,
+    QLineEdit, QMainWindow, QProgressBar, QPushButton,
+    QRadioButton, QSizePolicy, QSpinBox, QTableWidget,
+    QTableWidgetItem, QToolButton, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -31,19 +31,20 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMaximumSize(QSize(1100, 600))
+        MainWindow.setMaximumSize(QSize(16777215, 16777215))
         self.centralWidget = QWidget(MainWindow)
         self.centralWidget.setObjectName(u"centralWidget")
         sizePolicy.setHeightForWidth(self.centralWidget.sizePolicy().hasHeightForWidth())
         self.centralWidget.setSizePolicy(sizePolicy)
         self.centralWidget.setMinimumSize(QSize(1100, 600))
-        self.centralWidget.setMaximumSize(QSize(1100, 600))
+        self.centralWidget.setMaximumSize(QSize(16777215, 16777215))
         self.mainFrame = QFrame(self.centralWidget)
         self.mainFrame.setObjectName(u"mainFrame")
         self.mainFrame.setGeometry(QRect(0, 0, 1100, 600))
         sizePolicy.setHeightForWidth(self.mainFrame.sizePolicy().hasHeightForWidth())
         self.mainFrame.setSizePolicy(sizePolicy)
-        self.mainFrame.setMaximumSize(QSize(1100, 600))
+        self.mainFrame.setMinimumSize(QSize(1100, 600))
+        self.mainFrame.setMaximumSize(QSize(16777215, 16777215))
         self.mainFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.mainFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayoutWidget = QWidget(self.mainFrame)
@@ -56,6 +57,7 @@ class Ui_MainWindow(object):
         self.leftVerticalLayout = QVBoxLayout()
         self.leftVerticalLayout.setSpacing(5)
         self.leftVerticalLayout.setObjectName(u"leftVerticalLayout")
+        self.leftVerticalLayout.setSizeConstraint(QLayout.SizeConstraint.SetNoConstraint)
         self.leftVerticalLayout.setContentsMargins(0, 0, 0, 0)
         self.searchLayout = QHBoxLayout()
         self.searchLayout.setSpacing(5)
@@ -148,21 +150,23 @@ class Ui_MainWindow(object):
 
         self.leftVerticalLayout.addLayout(self.selectionLayout)
 
-        self.versionLabel = QLabel(self.horizontalLayoutWidget)
-        self.versionLabel.setObjectName(u"versionLabel")
+        self.infoLabel = QLabel(self.horizontalLayoutWidget)
+        self.infoLabel.setObjectName(u"infoLabel")
         font1 = QFont()
-        font1.setWeight(QFont.Light)
+        font1.setBold(False)
         font1.setItalic(False)
         font1.setUnderline(False)
-        self.versionLabel.setFont(font1)
+        self.infoLabel.setFont(font1)
 
-        self.leftVerticalLayout.addWidget(self.versionLabel)
+        self.leftVerticalLayout.addWidget(self.infoLabel)
 
 
         self.mainHorizontalLayout.addLayout(self.leftVerticalLayout)
 
         self.rightVerticalLayout = QVBoxLayout()
+        self.rightVerticalLayout.setSpacing(5)
         self.rightVerticalLayout.setObjectName(u"rightVerticalLayout")
+        self.rightVerticalLayout.setSizeConstraint(QLayout.SizeConstraint.SetNoConstraint)
         self.rightVerticalLayout.setContentsMargins(0, 0, 0, 0)
         self.loginLayout = QHBoxLayout()
         self.loginLayout.setSpacing(5)
@@ -426,6 +430,8 @@ class Ui_MainWindow(object):
 
         self.mainHorizontalLayout.addLayout(self.rightVerticalLayout)
 
+        self.mainHorizontalLayout.setStretch(0, 2)
+        self.mainHorizontalLayout.setStretch(1, 3)
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(MainWindow)
@@ -459,7 +465,7 @@ class Ui_MainWindow(object):
         self.selectionLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u5f62\u5982\"1,2\"\u548c\"1-3\" \u53ef\u6df7\u7528", None))
         self.selectAllButton.setText(QCoreApplication.translate("MainWindow", u"\u5168\u90e8\u52fe\u9009", None))
         self.addToDownloadListButton.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u5230\u4e0b\u8f7d\u5217\u8868", None))
-        self.versionLabel.setText(QCoreApplication.translate("MainWindow", u"NeteaseDownloader Ver.None by CooooldWind_", None))
+        self.infoLabel.setText(QCoreApplication.translate("MainWindow", u"NeteaseDownloader Ver.None by CooooldWind_", None))
         self.loginLabel.setText(QCoreApplication.translate("MainWindow", u"\u60a8\u5c1a\u672a\u767b\u5f55\uff01", None))
         self.loginLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u7528\u6237Cookie - \u586b\u5165MUSIC_U\u5b57\u6bb5\u7684\u503c\u5373\u53ef", None))
         self.loginButton.setText(QCoreApplication.translate("MainWindow", u"\u767b\u5f55", None))
