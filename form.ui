@@ -202,24 +202,26 @@
         </item>
         <item>
          <widget class="QTableWidget" name="resultTableWidget">
+          <property name="minimumSize">
+           <size>
+            <width>440</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+          </property>
+          <property name="dragDropOverwriteMode">
+           <bool>true</bool>
+          </property>
           <column>
            <property name="text">
-            <string>ID</string>
+            <string>歌曲</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>标题</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>歌手</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>专辑</string>
+            <string>选中</string>
            </property>
           </column>
          </widget>

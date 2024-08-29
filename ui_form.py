@@ -15,11 +15,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
-    QHBoxLayout, QHeaderView, QLabel, QLayout,
-    QLineEdit, QMainWindow, QProgressBar, QPushButton,
-    QRadioButton, QSizePolicy, QSpinBox, QTableWidget,
-    QTableWidgetItem, QToolButton, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
+    QFrame, QHBoxLayout, QHeaderView, QLabel,
+    QLayout, QLineEdit, QMainWindow, QProgressBar,
+    QPushButton, QRadioButton, QSizePolicy, QSpinBox,
+    QTableWidget, QTableWidgetItem, QToolButton, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -31,7 +32,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMaximumSize(QSize(16777215, 16777215))
+        MainWindow.setMaximumSize(QSize(1100, 600))
         self.centralWidget = QWidget(MainWindow)
         self.centralWidget.setObjectName(u"centralWidget")
         sizePolicy.setHeightForWidth(self.centralWidget.sizePolicy().hasHeightForWidth())
@@ -53,6 +54,7 @@ class Ui_MainWindow(object):
         self.mainHorizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.mainHorizontalLayout.setSpacing(5)
         self.mainHorizontalLayout.setObjectName(u"mainHorizontalLayout")
+        self.mainHorizontalLayout.setSizeConstraint(QLayout.SizeConstraint.SetNoConstraint)
         self.mainHorizontalLayout.setContentsMargins(10, 10, 10, 10)
         self.leftVerticalLayout = QVBoxLayout()
         self.leftVerticalLayout.setSpacing(5)
@@ -99,17 +101,16 @@ class Ui_MainWindow(object):
         self.leftVerticalLayout.addLayout(self.searchLayout)
 
         self.resultTableWidget = QTableWidget(self.horizontalLayoutWidget)
-        if (self.resultTableWidget.columnCount() < 4):
-            self.resultTableWidget.setColumnCount(4)
+        if (self.resultTableWidget.columnCount() < 2):
+            self.resultTableWidget.setColumnCount(2)
         __qtablewidgetitem = QTableWidgetItem()
         self.resultTableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
         self.resultTableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.resultTableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.resultTableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.resultTableWidget.setObjectName(u"resultTableWidget")
+        self.resultTableWidget.setMinimumSize(QSize(440, 0))
+        self.resultTableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.resultTableWidget.setDragDropOverwriteMode(True)
 
         self.leftVerticalLayout.addWidget(self.resultTableWidget)
 
@@ -213,14 +214,14 @@ class Ui_MainWindow(object):
         self.downloadListTableWidget = QTableWidget(self.horizontalLayoutWidget)
         if (self.downloadListTableWidget.columnCount() < 4):
             self.downloadListTableWidget.setColumnCount(4)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.downloadListTableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.downloadListTableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
-        self.downloadListTableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem4)
+        self.downloadListTableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem4)
         __qtablewidgetitem5 = QTableWidgetItem()
-        self.downloadListTableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.downloadListTableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.downloadListTableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem7)
+        self.downloadListTableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem5)
         self.downloadListTableWidget.setObjectName(u"downloadListTableWidget")
 
         self.rightVerticalLayout.addWidget(self.downloadListTableWidget)
@@ -448,13 +449,9 @@ class Ui_MainWindow(object):
 
         self.searchButton.setText(QCoreApplication.translate("MainWindow", u"\u641c\u7d22", None))
         ___qtablewidgetitem = self.resultTableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"ID", None));
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u6b4c\u66f2", None));
         ___qtablewidgetitem1 = self.resultTableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"\u6807\u9898", None));
-        ___qtablewidgetitem2 = self.resultTableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"\u6b4c\u624b", None));
-        ___qtablewidgetitem3 = self.resultTableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"\u4e13\u8f91", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"\u9009\u4e2d", None));
         self.selectionLabel.setText(QCoreApplication.translate("MainWindow", u"\u591a\u9879\u9009\u62e9", None))
 #if QT_CONFIG(tooltip)
         self.selectionLineEdit.setToolTip("")
@@ -471,14 +468,14 @@ class Ui_MainWindow(object):
         self.loginButton.setText(QCoreApplication.translate("MainWindow", u"\u767b\u5f55", None))
         self.browserLoginButton.setText(QCoreApplication.translate("MainWindow", u"\u6d4f\u89c8\u5668\u6a21\u62df\u767b\u5f55", None))
         self.downloadListLabel.setText(QCoreApplication.translate("MainWindow", u"\u4e0b\u8f7d\u5217\u8868", None))
-        ___qtablewidgetitem4 = self.downloadListTableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"ID", None));
-        ___qtablewidgetitem5 = self.downloadListTableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"\u6807\u9898", None));
-        ___qtablewidgetitem6 = self.downloadListTableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"\u6b4c\u624b", None));
-        ___qtablewidgetitem7 = self.downloadListTableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"\u4e13\u8f91", None));
+        ___qtablewidgetitem2 = self.downloadListTableWidget.horizontalHeaderItem(0)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"ID", None));
+        ___qtablewidgetitem3 = self.downloadListTableWidget.horizontalHeaderItem(1)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"\u6807\u9898", None));
+        ___qtablewidgetitem4 = self.downloadListTableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"\u6b4c\u624b", None));
+        ___qtablewidgetitem5 = self.downloadListTableWidget.horizontalHeaderItem(3)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"\u4e13\u8f91", None));
         self.qualityLabel.setText(QCoreApplication.translate("MainWindow", u"\u97f3\u8d28", None))
         self.standardRadioButton.setText(QCoreApplication.translate("MainWindow", u"\u6807\u51c6(standard)", None))
         self.higherRadioButton.setText(QCoreApplication.translate("MainWindow", u"\u8f83\u9ad8(higher)", None))

@@ -3,7 +3,7 @@ import sys
 import time
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QThread, QEventLoop
-from PySide6.QtWidgets import QApplication, QTableWidgetItem
+from PySide6.QtWidgets import *
 from login import LoginSubWindow
 from netease_encode_api import EncodeSession
 
@@ -13,6 +13,11 @@ from netease_encode_api import EncodeSession
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_MainWindow
 from typing import List, Dict
+from music_frame import Ui_Frame
+
+# for cover picture
+from PySide6.QtGui import QPixmap, QImage
+from class163.origin_file import OriginFile
 
 # temp
 from class163.playlist import Playlist
@@ -41,12 +46,13 @@ class EventThread(QThread):
         self.text = None
         self.result = None
         self.encode_session: EncodeSession = None
+        self.source = None
 
     def run(self):
         if self.mode == 1:
-            p = Playlist(self.text)
-            p.get_detail(session=self.encode_session)
-            self.result = p.info_dict()
+            self.source = Playlist(self.text)
+            self.source.get_detail(session=self.encode_session)
+            self.result = self.source.info_dict()
         return None
 
 
@@ -110,14 +116,26 @@ class MainWindow(QMainWindow):
             result = dict(result)
             self.ui.resultTableWidget.setRowCount(int(result["track_count"]))
             for i in range(int(result["track_count"])):
-                attribute_item = QTableWidgetItem(str(result["track_info"][i]["id"]))
-                self.ui.resultTableWidget.setItem(i, 0, attribute_item)
-                attribute_item = QTableWidgetItem(result["track_info"][i]["title"])
-                self.ui.resultTableWidget.setItem(i, 1, attribute_item)
-                attribute_item = QTableWidgetItem(artist_join(result["track_info"][i]["artist"],"/"))
-                self.ui.resultTableWidget.setItem(i, 2, attribute_item)
-                attribute_item = QTableWidgetItem(result["track_info"][i]["album"])
-                self.ui.resultTableWidget.setItem(i, 3, attribute_item)
+                self.ui.infoLabel.setText(f"正在加载歌单... {i}/{int(result["track_count"])}")
+                self.update()
+                now = result["track_info"][i]
+                title, subtitle, artist = now["title"], now["subtitle"], artist_join(now["artist"],"/")
+                new_frame = Ui_Frame()
+                frame_widget = QWidget()
+                new_frame.setupUi(frame_widget)
+                new_frame.titleLabel.setText(title)
+                new_frame.subtitleLabel.setText(subtitle)
+                new_frame.aritstLabel.setText(artist)
+                cover_url = f"{self.event_thread.source.track[i].detail_info_raw["al"]["picUrl"]}?param=60y60"
+                of = OriginFile(cover_url)
+                of.begin_download()
+                data = of.get_data()
+                img = QImage.fromData(data)
+                pixmap = QPixmap.fromImage(img)
+                new_frame.coverLabel.setPixmap(pixmap)
+                self.ui.resultTableWidget.setCellWidget(i, 0, frame_widget)
+                self.ui.resultTableWidget.setColumnWidth(0, 400)
+                self.ui.resultTableWidget.setRowHeight(i, 80)
                 self.update()
             self.ui.infoLabel.setText(f"歌单 \"{result["title"]}\" 获取完成,，共 {str(result["track_count"])} 首歌曲。")
             self.update()
