@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>80</height>
+    <height>64</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,15 +16,17 @@
   <widget class="QLabel" name="coverLabel">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>60</width>
-     <height>60</height>
+     <x>8</x>
+     <y>8</y>
+     <width>48</width>
+     <height>48</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 5px;
-border: 1px solid black;</string>
+    <string notr="true">border-radius: 8px; background-color: white;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
    <property name="text">
     <string>Cover</string>
@@ -36,10 +38,10 @@ border: 1px solid black;</string>
   <widget class="QLabel" name="titleLabel">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>10</y>
-     <width>310</width>
-     <height>25</height>
+     <x>64</x>
+     <y>12</y>
+     <width>328</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -50,7 +52,7 @@ border: 1px solid black;</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -61,43 +63,22 @@ border: 1px solid black;</string>
   <widget class="QLabel" name="aritstLabel">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>55</y>
-     <width>310</width>
-     <height>15</height>
+     <x>64</x>
+     <y>40</y>
+     <width>328</width>
+     <height>12</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>8</pointsize>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">opacity: 0.7;</string>
+    <string notr="true">color: rgb(170, 170, 170);</string>
    </property>
    <property name="text">
     <string>Artist</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="subtitleLabel">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>37</y>
-     <width>310</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">opacity: 0.7;</string>
-   </property>
-   <property name="text">
-    <string>Subtitle</string>
    </property>
   </widget>
  </widget>

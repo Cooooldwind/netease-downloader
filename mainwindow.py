@@ -24,6 +24,7 @@ from class163 import Music, Playlist
 from pprint import pprint
 from class163.music import artist_join
 import requests
+import global_bin
 
 
 class EventThread(QThread):
@@ -51,8 +52,8 @@ class EventThread(QThread):
                 try:
                     data = bytes()
                     now = result["track_info"][i]
-                    title, subtitle, artist = now["title"], now["subtitle"], artist_join(now["artist"],"/")
-                    cover_url = f"{self.source.track[i].detail_info_raw["al"]["picUrl"]}?param=60y60"
+                    title, artist = now["title"], artist_join(now["artist"],"/")
+                    cover_url = f"{self.source.track[i].detail_info_raw["al"]["picUrl"]}?param=48y48"
                     of = OriginFile(cover_url)
                     of.begin_download()
                     data = of.get_data()
@@ -64,7 +65,6 @@ class EventThread(QThread):
                 finally:
                     sorted.update({
                         "title": title,
-                        "subtitle": subtitle,
                         "artist": artist,
                         "data": data,
                         "index": i,
@@ -131,13 +131,12 @@ class MainWindow(QMainWindow):
             frame_widget = QWidget()
             new_frame.setupUi(frame_widget)
             new_frame.titleLabel.setText(result["title"])
-            new_frame.subtitleLabel.setText(result["subtitle"])
             new_frame.aritstLabel.setText(result["artist"])
-            img = QImage.fromData(result["data"])
+            img = QImage.fromData(result["data"] if result["data"] != b"" else global_bin.DEFAULT_COVER)
             pixmap = QPixmap.fromImage(img)
             new_frame.coverLabel.setPixmap(pixmap)
             self.ui.resultTableWidget.setColumnWidth(0, 400)
-            self.ui.resultTableWidget.setRowHeight(result["index"], 80)
+            self.ui.resultTableWidget.setRowHeight(result["index"], 64)
             self.ui.resultTableWidget.setCellWidget(result["index"], 0, frame_widget)
             self.ui.infoLabel.setText(f"正在加载歌单... {result["index"]}/{result["row"]}")
             self.update()

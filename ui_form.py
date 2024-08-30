@@ -109,8 +109,14 @@ class Ui_MainWindow(object):
         self.resultTableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         self.resultTableWidget.setObjectName(u"resultTableWidget")
         self.resultTableWidget.setMinimumSize(QSize(440, 0))
+        self.resultTableWidget.setStyleSheet(u"background-color: white;")
+        self.resultTableWidget.setFrameShape(QFrame.Shape.StyledPanel)
+        self.resultTableWidget.setFrameShadow(QFrame.Shadow.Plain)
+        self.resultTableWidget.setLineWidth(0)
         self.resultTableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.resultTableWidget.setDragDropOverwriteMode(True)
+        self.resultTableWidget.setShowGrid(False)
+        self.resultTableWidget.setCornerButtonEnabled(False)
 
         self.leftVerticalLayout.addWidget(self.resultTableWidget)
 
