@@ -2,7 +2,7 @@
 import sys
 import time
 from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtCore import QThread, QEventLoop
+from PySide6.QtCore import QThread, QEventLoop, Signal, Slot
 from PySide6.QtWidgets import *
 from login import LoginSubWindow
 from netease_encode_api import EncodeSession
@@ -20,23 +20,14 @@ from PySide6.QtGui import QPixmap, QImage
 from class163.origin_file import OriginFile
 
 # temp
-from class163.playlist import Playlist
+from class163 import Music, Playlist
 from pprint import pprint
 from class163.music import artist_join
-
-
-class RefreshThread(QThread):
-    def __init__(self, window: QMainWindow):
-        super().__init__()
-        self.window = window
-
-    def run(self):
-        while True:
-            self.window.update()
-            time.sleep(0.05)
+import requests
 
 
 class EventThread(QThread):
+    mode1_signal = Signal(dict)
     def __init__(self):
         super(EventThread, self).__init__()
         self.playlist = None
@@ -46,13 +37,39 @@ class EventThread(QThread):
         self.text = None
         self.result = None
         self.encode_session: EncodeSession = None
-        self.source = None
+        self.source: Playlist = None
 
     def run(self):
         if self.mode == 1:
             self.source = Playlist(self.text)
             self.source.get_detail(session=self.encode_session)
             self.result = self.source.info_dict()
+            result = dict(self.result)
+            sorted = {}
+            sorted.update({"row": int(result["track_count"])})
+            for i in range(int(result["track_count"])):
+                try:
+                    data = bytes()
+                    now = result["track_info"][i]
+                    title, subtitle, artist = now["title"], now["subtitle"], artist_join(now["artist"],"/")
+                    cover_url = f"{self.source.track[i].detail_info_raw["al"]["picUrl"]}?param=60y60"
+                    of = OriginFile(cover_url)
+                    of.begin_download()
+                    data = of.get_data()
+                except requests.HTTPError:
+                    pass
+                except Exception as e:
+                    print(e)
+                    continue
+                finally:
+                    sorted.update({
+                        "title": title,
+                        "subtitle": subtitle,
+                        "artist": artist,
+                        "data": data,
+                        "index": i,
+                    })
+                    self.mode1_signal.emit(sorted)
         return None
 
 
@@ -73,7 +90,7 @@ class MainWindow(QMainWindow):
         )
         self.level = None
         self.event_thread = EventThread()
-        self.event_thread.finished.connect(self.update_result_table)
+        self.event_thread.finished.connect(self.search_end)
         self.search_mode = self.ui.searchComboBox.currentIndex()
         self.ui.searchButton.clicked.connect(self.search)
         self.ui.searchLineEdit.returnPressed.connect(self.search)
@@ -96,48 +113,33 @@ class MainWindow(QMainWindow):
             self.event_thread.mode = mode
             self.event_thread.text = self.ui.searchLineEdit.text()
             self.event_thread.encode_session = self.encode_session
+            self.event_thread.mode1_signal.connect(self.update_result_table)
             self.event_thread.start()
-            self.ui.infoLabel.setText("正在获取歌单......")
-        """
-        event_thread.start()
-        while True:
-            result = event_thread.result
-            if result != None:
-                event_thread.result = None
-                break
-            else: 
-                self.update()
-                time.sleep(0.05)
-        """
+            self.ui.infoLabel.setText("正在获取歌单......")        
 
-    def update_result_table(self):
-        result = self.event_thread.result
+    def search_end(self):
+        self.ui.infoLabel.setText(f"歌单 \"{self.event_thread.result["title"]}\" 获取完成,，共 {str(self.event_thread.result["track_count"])} 首歌曲。")
+        self.update()
+
+    @Slot(dict)
+    def update_result_table(self, result):
         if self.search_mode == 1:
             result = dict(result)
-            self.ui.resultTableWidget.setRowCount(int(result["track_count"]))
-            for i in range(int(result["track_count"])):
-                self.ui.infoLabel.setText(f"正在加载歌单... {i}/{int(result["track_count"])}")
-                self.update()
-                now = result["track_info"][i]
-                title, subtitle, artist = now["title"], now["subtitle"], artist_join(now["artist"],"/")
-                new_frame = Ui_Frame()
-                frame_widget = QWidget()
-                new_frame.setupUi(frame_widget)
-                new_frame.titleLabel.setText(title)
-                new_frame.subtitleLabel.setText(subtitle)
-                new_frame.aritstLabel.setText(artist)
-                cover_url = f"{self.event_thread.source.track[i].detail_info_raw["al"]["picUrl"]}?param=60y60"
-                of = OriginFile(cover_url)
-                of.begin_download()
-                data = of.get_data()
-                img = QImage.fromData(data)
-                pixmap = QPixmap.fromImage(img)
-                new_frame.coverLabel.setPixmap(pixmap)
-                self.ui.resultTableWidget.setCellWidget(i, 0, frame_widget)
-                self.ui.resultTableWidget.setColumnWidth(0, 400)
-                self.ui.resultTableWidget.setRowHeight(i, 80)
-                self.update()
-            self.ui.infoLabel.setText(f"歌单 \"{result["title"]}\" 获取完成,，共 {str(result["track_count"])} 首歌曲。")
+            if self.ui.resultTableWidget.rowCount() != int(result["row"]):
+                self.ui.resultTableWidget.setRowCount(result["row"])
+            new_frame = Ui_Frame()
+            frame_widget = QWidget()
+            new_frame.setupUi(frame_widget)
+            new_frame.titleLabel.setText(result["title"])
+            new_frame.subtitleLabel.setText(result["subtitle"])
+            new_frame.aritstLabel.setText(result["artist"])
+            img = QImage.fromData(result["data"])
+            pixmap = QPixmap.fromImage(img)
+            new_frame.coverLabel.setPixmap(pixmap)
+            self.ui.resultTableWidget.setColumnWidth(0, 400)
+            self.ui.resultTableWidget.setRowHeight(result["index"], 80)
+            self.ui.resultTableWidget.setCellWidget(result["index"], 0, frame_widget)
+            self.ui.infoLabel.setText(f"正在加载歌单... {result["index"]}/{result["row"]}")
             self.update()
         return None
 
@@ -185,7 +187,5 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
-    refresh_thread = RefreshThread(widget)
-    refresh_thread.start()
     widget.show()
     sys.exit(app.exec())
