@@ -135,6 +135,7 @@ class MainWindow(QMainWindow):
             img = QImage.fromData(result["data"] if result["data"] != b"" else global_bin.DEFAULT_COVER)
             pixmap = QPixmap.fromImage(img)
             new_frame.coverLabel.setPixmap(pixmap)
+            new_frame.coverLabel.setStyleSheet(new_frame.coverLabel.styleSheet() + "border-radius: 8px;")
             self.ui.resultTableWidget.setColumnWidth(0, 400)
             self.ui.resultTableWidget.setRowHeight(result["index"], 64)
             self.ui.resultTableWidget.setCellWidget(result["index"], 0, frame_widget)

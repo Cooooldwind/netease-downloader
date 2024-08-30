@@ -215,10 +215,10 @@
            <enum>QFrame::Shape::StyledPanel</enum>
           </property>
           <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
+           <enum>QFrame::Shadow::Sunken</enum>
           </property>
           <property name="lineWidth">
-           <number>0</number>
+           <number>1</number>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
