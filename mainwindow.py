@@ -50,20 +50,27 @@ class EventThread(QThread):
             sorted = {}
             sorted.update({"row": int(result["track_count"])})
             for i in range(int(result["track_count"])):
-                data = bytes()
-                now = result["track_info"][i]
-                title, artist = now["title"], artist_join(now["artist"],"/")
-                cover_url = f"{self.source.track[i].detail_info_raw["al"]["picUrl"]}?param=48y48"
-                of = OriginFile(cover_url)
-                of.begin_download()
-                data = of.get_data()
-                sorted.update({
-                    "title": title,
-                    "artist": artist,
-                    "data": data,
-                    "index": i,
-                })
-                self.mode1_signal.emit(sorted)
+                try:
+                    data = bytes()
+                    now = result["track_info"][i]
+                    title, artist = now["title"], artist_join(now["artist"],"/")
+                    cover_url = f"{self.source.track[i].detail_info_raw["al"]["picUrl"]}?param=48y48"
+                    of = OriginFile(cover_url)
+                    of.begin_download()
+                    data = of.get_data()
+                except requests.HTTPError:
+                    pass
+                except Exception as e:
+                    print(e)
+                    continue
+                finally:
+                    sorted.update({
+                        "title": title,
+                        "artist": artist,
+                        "data": data,
+                        "index": i,
+                    })
+                    self.mode1_signal.emit(sorted)
         return None
 
 
@@ -97,8 +104,8 @@ class MainWindow(QMainWindow):
         self.ui.lyricsAddCheckBox.clicked.connect(self.status_update)
         self.ui.albumCoverCheckBox.clicked.connect(self.status_update)
         self.ui.lyricsDownloadCheckBox.clicked.connect(self.status_update)
-        # self.ui.resultTableWidget.setBorderVisible(True)
-        # self.ui.resultTableWidget.setBorderRadius(8)
+        self.ui.resultTableWidget.setBorderVisible(True)
+        self.ui.resultTableWidget.setBorderRadius(8)
         self.cookie = {}
 
     def search(self):
@@ -120,12 +127,19 @@ class MainWindow(QMainWindow):
     def update_result_table(self, result):
         if self.search_mode == 1:
             result = dict(result)
-            self.ui.resultTableWidget.setRowCount(int(result["index"]))
+            if self.ui.resultTableWidget.rowCount() != int(result["row"]):
+                self.ui.resultTableWidget.setRowCount(result["row"])
+                for i in range(result["row"]):
+                    self.ui.resultTableWidget.hideRow(i)
             new_frame = Ui_Frame()
             frame_widget = QWidget()
             new_frame.setupUi(frame_widget)
             new_frame.titleLabel.setText(result["title"])
             new_frame.artistLabel.setText(result["artist"])
+            img = QImage.fromData(result["data"] if result["data"] != b"" else global_bin.DEFAULT_COVER)
+            new_frame.coverLabel.setImage(img)
+            new_frame.coverLabel.setBorderRadius(8, 8, 8, 8)
+            self.ui.resultTableWidget.showRow(result["index"])
             self.ui.resultTableWidget.setColumnWidth(0, 400)
             self.ui.resultTableWidget.setRowHeight(result["index"], 64)
             self.ui.resultTableWidget.setCellWidget(result["index"], 0, frame_widget)

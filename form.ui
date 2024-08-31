@@ -201,7 +201,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableWidget" name="resultTableWidget">
+         <widget class="TableWidget" name="resultTableWidget">
           <property name="minimumSize">
            <size>
             <width>500</width>
@@ -234,7 +234,7 @@
           </property>
           <column>
            <property name="text">
-            <string>Item</string>
+            <string>歌曲</string>
            </property>
           </column>
          </widget>
@@ -777,16 +777,16 @@
   <customwidget>
    <class>BodyLabel</class>
    <extends>QLabel</extends>
-   <header location="global">qfluentwidgets</header>
-  </customwidget>
-  <customwidget>
-   <class>PrimaryPushButton</class>
-   <extends>QPushButton</extends>
    <header>qfluentwidgets</header>
   </customwidget>
   <customwidget>
    <class>StrongBodyLabel</class>
    <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PrimaryPushButton</class>
+   <extends>QPushButton</extends>
    <header>qfluentwidgets</header>
   </customwidget>
   <customwidget>

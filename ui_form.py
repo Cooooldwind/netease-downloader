@@ -17,7 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
     QHeaderView, QLayout, QMainWindow, QSizePolicy,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QTableWidgetItem, QVBoxLayout, QWidget)
 
 from qfluentwidgets import (BodyLabel, CheckBox, ComboBox, LineEdit,
     PasswordLineEdit, PrimaryPushButton, ProgressBar, PushButton,
@@ -102,7 +102,7 @@ class Ui_MainWindow(object):
 
         self.leftVerticalLayout.addLayout(self.searchLayout)
 
-        self.resultTableWidget = QTableWidget(self.horizontalLayoutWidget)
+        self.resultTableWidget = TableWidget(self.horizontalLayoutWidget)
         if (self.resultTableWidget.columnCount() < 1):
             self.resultTableWidget.setColumnCount(1)
         __qtablewidgetitem = QTableWidgetItem()
@@ -435,7 +435,7 @@ class Ui_MainWindow(object):
 
         self.searchButton.setText(QCoreApplication.translate("MainWindow", u"\u641c\u7d22", None))
         ___qtablewidgetitem = self.resultTableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Item", None));
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u6b4c\u66f2", None));
         self.selectionLabel.setText(QCoreApplication.translate("MainWindow", u"\u591a\u9879\u9009\u62e9", None))
 #if QT_CONFIG(tooltip)
         self.selectionLineEdit.setToolTip("")
