@@ -132,9 +132,6 @@ class Ui_MainWindow(object):
         self.selectionLayout.setContentsMargins(0, 0, 0, 0)
         self.selectionLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.selectionLabel.setObjectName(u"selectionLabel")
-        font = QFont()
-        font.setBold(False)
-        self.selectionLabel.setFont(font)
 
         self.selectionLayout.addWidget(self.selectionLabel)
 
@@ -159,11 +156,6 @@ class Ui_MainWindow(object):
 
         self.infoLabel = BodyLabel(self.horizontalLayoutWidget)
         self.infoLabel.setObjectName(u"infoLabel")
-        font1 = QFont()
-        font1.setBold(False)
-        font1.setItalic(False)
-        font1.setUnderline(False)
-        self.infoLabel.setFont(font1)
 
         self.leftVerticalLayout.addWidget(self.infoLabel)
 
@@ -181,10 +173,6 @@ class Ui_MainWindow(object):
         self.loginLayout.setContentsMargins(0, 0, 0, 0)
         self.loginLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.loginLabel.setObjectName(u"loginLabel")
-        font2 = QFont()
-        font2.setBold(False)
-        font2.setKerning(True)
-        self.loginLabel.setFont(font2)
 
         self.loginLayout.addWidget(self.loginLabel)
 
@@ -213,7 +201,6 @@ class Ui_MainWindow(object):
         self.downloadListTitleLayout.setContentsMargins(0, 0, 0, 0)
         self.downloadListLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.downloadListLabel.setObjectName(u"downloadListLabel")
-        self.downloadListLabel.setFont(font2)
 
         self.downloadListTitleLayout.addWidget(self.downloadListLabel)
 
@@ -234,7 +221,6 @@ class Ui_MainWindow(object):
         self.qualityLayout.setContentsMargins(5, 5, 5, 5)
         self.qualityLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.qualityLabel.setObjectName(u"qualityLabel")
-        self.qualityLabel.setFont(font2)
 
         self.qualityLayout.addWidget(self.qualityLabel)
 
@@ -267,7 +253,6 @@ class Ui_MainWindow(object):
         self.filePropertiesLayout.setContentsMargins(5, 5, 5, 5)
         self.filePropertiesLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.filePropertiesLabel.setObjectName(u"filePropertiesLabel")
-        self.filePropertiesLabel.setFont(font2)
 
         self.filePropertiesLayout.addWidget(self.filePropertiesLabel)
 
@@ -300,7 +285,6 @@ class Ui_MainWindow(object):
         self.lyricsEncodingLayout.setContentsMargins(5, 5, 5, 5)
         self.lyricsEncodingLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.lyricsEncodingLabel.setObjectName(u"lyricsEncodingLabel")
-        self.lyricsEncodingLabel.setFont(font2)
 
         self.lyricsEncodingLayout.addWidget(self.lyricsEncodingLabel)
 
@@ -314,7 +298,6 @@ class Ui_MainWindow(object):
 
         self.albumCoverSizeLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.albumCoverSizeLabel.setObjectName(u"albumCoverSizeLabel")
-        self.albumCoverSizeLabel.setFont(font2)
 
         self.lyricsEncodingLayout.addWidget(self.albumCoverSizeLabel)
 
@@ -335,7 +318,6 @@ class Ui_MainWindow(object):
         self.fileSavingLayout.setContentsMargins(-1, -1, -1, 0)
         self.fileSaveLocationLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.fileSaveLocationLabel.setObjectName(u"fileSaveLocationLabel")
-        self.fileSaveLocationLabel.setFont(font)
 
         self.fileSavingLayout.addWidget(self.fileSaveLocationLabel)
 
@@ -352,7 +334,6 @@ class Ui_MainWindow(object):
 
         self.filenameFormatLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.filenameFormatLabel.setObjectName(u"filenameFormatLabel")
-        self.filenameFormatLabel.setFont(font)
 
         self.fileSavingLayout.addWidget(self.filenameFormatLabel)
 
@@ -382,7 +363,6 @@ class Ui_MainWindow(object):
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.downloadListProgressLabel.sizePolicy().hasHeightForWidth())
         self.downloadListProgressLabel.setSizePolicy(sizePolicy3)
-        self.downloadListProgressLabel.setFont(font2)
 
         self.downloadListProgressInnerLayout.addWidget(self.downloadListProgressLabel)
 
@@ -407,7 +387,6 @@ class Ui_MainWindow(object):
         self.currentSongProgressLabel.setObjectName(u"currentSongProgressLabel")
         sizePolicy3.setHeightForWidth(self.currentSongProgressLabel.sizePolicy().hasHeightForWidth())
         self.currentSongProgressLabel.setSizePolicy(sizePolicy3)
-        self.currentSongProgressLabel.setFont(font2)
 
         self.currentSongProgressLayout.addWidget(self.currentSongProgressLabel)
 

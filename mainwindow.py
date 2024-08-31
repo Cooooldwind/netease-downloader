@@ -3,7 +3,7 @@ import sys
 import time
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QThread, QEventLoop, Signal, Slot
-from PySide6.QtWidgets import *
+from PySide6.QtWidgets import QWidget
 from login import LoginSubWindow
 from netease_encode_api import EncodeSession
 
@@ -50,27 +50,20 @@ class EventThread(QThread):
             sorted = {}
             sorted.update({"row": int(result["track_count"])})
             for i in range(int(result["track_count"])):
-                try:
-                    data = bytes()
-                    now = result["track_info"][i]
-                    title, artist = now["title"], artist_join(now["artist"],"/")
-                    cover_url = f"{self.source.track[i].detail_info_raw["al"]["picUrl"]}?param=48y48"
-                    of = OriginFile(cover_url)
-                    of.begin_download()
-                    data = of.get_data()
-                except requests.HTTPError:
-                    pass
-                except Exception as e:
-                    print(e)
-                    pass
-                finally:
-                    sorted.update({
-                        "title": title,
-                        "artist": artist,
-                        "data": data,
-                        "index": i,
-                    })
-                    self.mode1_signal.emit(sorted)
+                data = bytes()
+                now = result["track_info"][i]
+                title, artist = now["title"], artist_join(now["artist"],"/")
+                cover_url = f"{self.source.track[i].detail_info_raw["al"]["picUrl"]}?param=48y48"
+                of = OriginFile(cover_url)
+                of.begin_download()
+                data = of.get_data()
+                sorted.update({
+                    "title": title,
+                    "artist": artist,
+                    "data": data,
+                    "index": i,
+                })
+                self.mode1_signal.emit(sorted)
         return None
 
 
@@ -127,20 +120,15 @@ class MainWindow(QMainWindow):
     def update_result_table(self, result):
         if self.search_mode == 1:
             result = dict(result)
-            new = Ui_musicWidget()
-            widget = QWidget()
-            new.setupUi(widget)
-            new.titleLabel.setText(result["title"])
-            new.artistLabel.setText(result["artist"])
-            img = QImage.fromData(result["data"] if result["data"] != b"" else global_bin.DEFAULT_COVER)
-            new.coverLabel.setImage(img)
-            new.coverLabel.scaledToWidth(48)
-            new.coverLabel.scaledToHeight(48)
-            new.coverLabel.setBorderRadius(8,8,8,8)
             self.ui.resultTableWidget.setRowCount(int(result["index"]))
+            new_frame = Ui_Frame()
+            frame_widget = QWidget()
+            new_frame.setupUi(frame_widget)
+            new_frame.titleLabel.setText(result["title"])
+            new_frame.artistLabel.setText(result["artist"])
             self.ui.resultTableWidget.setColumnWidth(0, 400)
             self.ui.resultTableWidget.setRowHeight(result["index"], 64)
-            self.ui.resultTableWidget.setCellWidget(int(result["index"]), 0, widget)
+            self.ui.resultTableWidget.setCellWidget(result["index"], 0, frame_widget)
             self.ui.infoLabel.setText(f"正在加载歌单... {result["index"]}/{result["row"]}")
             self.update()
         return None

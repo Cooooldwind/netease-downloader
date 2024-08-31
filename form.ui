@@ -274,11 +274,6 @@
           </property>
           <item>
            <widget class="StrongBodyLabel" name="selectionLabel">
-            <property name="font">
-             <font>
-              <bold>false</bold>
-             </font>
-            </property>
             <property name="text">
              <string>多项选择</string>
             </property>
@@ -321,13 +316,6 @@
         </item>
         <item>
          <widget class="BodyLabel" name="infoLabel">
-          <property name="font">
-           <font>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-           </font>
-          </property>
           <property name="text">
            <string>NeteaseDownloader Ver.None by CooooldWind_</string>
           </property>
@@ -374,12 +362,6 @@
           </property>
           <item>
            <widget class="StrongBodyLabel" name="loginLabel">
-            <property name="font">
-             <font>
-              <bold>false</bold>
-              <kerning>true</kerning>
-             </font>
-            </property>
             <property name="text">
              <string>您尚未登录！</string>
             </property>
@@ -430,12 +412,6 @@
           </property>
           <item>
            <widget class="StrongBodyLabel" name="downloadListLabel">
-            <property name="font">
-             <font>
-              <bold>false</bold>
-              <kerning>true</kerning>
-             </font>
-            </property>
             <property name="text">
              <string>下载列表</string>
             </property>
@@ -479,12 +455,6 @@
             </property>
             <item>
              <widget class="StrongBodyLabel" name="qualityLabel">
-              <property name="font">
-               <font>
-                <bold>false</bold>
-                <kerning>true</kerning>
-               </font>
-              </property>
               <property name="text">
                <string>音质</string>
               </property>
@@ -539,12 +509,6 @@
             </property>
             <item>
              <widget class="StrongBodyLabel" name="filePropertiesLabel">
-              <property name="font">
-               <font>
-                <bold>false</bold>
-                <kerning>true</kerning>
-               </font>
-              </property>
               <property name="text">
                <string>文件属性</string>
               </property>
@@ -599,12 +563,6 @@
             </property>
             <item>
              <widget class="StrongBodyLabel" name="lyricsEncodingLabel">
-              <property name="font">
-               <font>
-                <bold>false</bold>
-                <kerning>true</kerning>
-               </font>
-              </property>
               <property name="text">
                <string>歌词编码方式</string>
               </property>
@@ -631,12 +589,6 @@
             </item>
             <item>
              <widget class="StrongBodyLabel" name="albumCoverSizeLabel">
-              <property name="font">
-               <font>
-                <bold>false</bold>
-                <kerning>true</kerning>
-               </font>
-              </property>
               <property name="text">
                <string>专辑封面大小</string>
               </property>
@@ -667,11 +619,6 @@
             </property>
             <item>
              <widget class="StrongBodyLabel" name="fileSaveLocationLabel">
-              <property name="font">
-               <font>
-                <bold>false</bold>
-               </font>
-              </property>
               <property name="text">
                <string>文件保存位置</string>
               </property>
@@ -693,11 +640,6 @@
             </item>
             <item>
              <widget class="StrongBodyLabel" name="filenameFormatLabel">
-              <property name="font">
-               <font>
-                <bold>false</bold>
-               </font>
-              </property>
               <property name="text">
                <string>文件格式</string>
               </property>
@@ -745,12 +687,6 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
-                <property name="font">
-                 <font>
-                  <bold>false</bold>
-                  <kerning>true</kerning>
-                 </font>
-                </property>
                 <property name="text">
                  <string>下载列表的下载进度</string>
                 </property>
@@ -792,12 +728,6 @@
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
-                </property>
-                <property name="font">
-                 <font>
-                  <bold>false</bold>
-                  <kerning>true</kerning>
-                 </font>
                 </property>
                 <property name="text">
                  <string>当前歌曲的下载进度</string>

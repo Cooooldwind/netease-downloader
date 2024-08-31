@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Frame</string>
   </property>
-  <widget class="ImageLabel" name="coverLabel">
+  <widget class="QLabel" name="coverLabel">
    <property name="geometry">
     <rect>
      <x>8</x>
@@ -35,7 +35,7 @@
     <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
-  <widget class="TitleLabel" name="titleLabel">
+  <widget class="QLabel" name="titleLabel">
    <property name="geometry">
     <rect>
      <x>64</x>
@@ -60,7 +60,7 @@
     <string>Title</string>
    </property>
   </widget>
-  <widget class="BodyLabel" name="aritstLabel">
+  <widget class="QLabel" name="artistLabel">
    <property name="geometry">
     <rect>
      <x>64</x>
@@ -82,23 +82,6 @@
    </property>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>BodyLabel</class>
-   <extends>QLabel</extends>
-   <header location="global">qfluentwidgets</header>
-  </customwidget>
-  <customwidget>
-   <class>TitleLabel</class>
-   <extends>QLabel</extends>
-   <header>qfluentwidgets</header>
-  </customwidget>
-  <customwidget>
-   <class>ImageLabel</class>
-   <extends>QLabel</extends>
-   <header>qfluentwidgets</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
