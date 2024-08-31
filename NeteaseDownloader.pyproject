@@ -2,6 +2,7 @@
     "files": [
         "mainwindow.py",
         "form.ui",
-        "music_frame.ui"
+        "music_frame.ui",
+        "music_widget.ui"
     ]
 }

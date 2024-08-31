@@ -143,7 +143,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QComboBox" name="searchComboBox">
+           <widget class="ComboBox" name="searchComboBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -173,7 +173,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="searchLineEdit">
+           <widget class="LineEdit" name="searchLineEdit">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -186,7 +186,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="searchButton">
+           <widget class="PrimaryPushButton" name="searchButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -201,15 +201,15 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableWidget" name="resultTableWidget">
+         <widget class="TableWidget" name="resultTableWidget">
           <property name="minimumSize">
            <size>
-            <width>440</width>
+            <width>500</width>
             <height>0</height>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: white;</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::Shape::StyledPanel</enum>
@@ -235,11 +235,6 @@
           <column>
            <property name="text">
             <string>歌曲</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>选中</string>
            </property>
           </column>
          </widget>
@@ -278,19 +273,14 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="selectionLabel">
-            <property name="font">
-             <font>
-              <bold>true</bold>
-             </font>
-            </property>
+           <widget class="StrongBodyLabel" name="selectionLabel">
             <property name="text">
              <string>多项选择</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="selectionLineEdit">
+           <widget class="LineEdit" name="selectionLineEdit">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -309,14 +299,14 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="selectAllButton">
+           <widget class="PushButton" name="selectAllButton">
             <property name="text">
              <string>全部勾选</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="addToDownloadListButton">
+           <widget class="PrimaryPushButton" name="addToDownloadListButton">
             <property name="text">
              <string>添加到下载列表</string>
             </property>
@@ -325,14 +315,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QLabel" name="infoLabel">
-          <property name="font">
-           <font>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-           </font>
-          </property>
+         <widget class="BodyLabel" name="infoLabel">
           <property name="text">
            <string>NeteaseDownloader Ver.None by CooooldWind_</string>
           </property>
@@ -378,19 +361,14 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="loginLabel">
-            <property name="font">
-             <font>
-              <bold>true</bold>
-             </font>
-            </property>
+           <widget class="StrongBodyLabel" name="loginLabel">
             <property name="text">
              <string>您尚未登录！</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="loginLineEdit">
+           <widget class="PasswordLineEdit" name="loginLineEdit">
             <property name="maxLength">
              <number>800</number>
             </property>
@@ -403,14 +381,14 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="loginButton">
+           <widget class="PrimaryPushButton" name="loginButton">
             <property name="text">
              <string>登录</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="browserLoginButton">
+           <widget class="PushButton" name="browserLoginButton">
             <property name="text">
              <string>浏览器模拟登录</string>
             </property>
@@ -433,12 +411,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="downloadListLabel">
-            <property name="font">
-             <font>
-              <bold>true</bold>
-             </font>
-            </property>
+           <widget class="StrongBodyLabel" name="downloadListLabel">
             <property name="text">
              <string>下载列表</string>
             </property>
@@ -447,28 +420,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableWidget" name="downloadListTableWidget">
-          <column>
-           <property name="text">
-            <string>ID</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>标题</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>歌手</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>专辑</string>
-           </property>
-          </column>
-         </widget>
+         <widget class="TableWidget" name="downloadListTableWidget"/>
         </item>
         <item>
          <layout class="QVBoxLayout" name="downloadSettingsLayout">
@@ -502,40 +454,35 @@
              <number>5</number>
             </property>
             <item>
-             <widget class="QLabel" name="qualityLabel">
-              <property name="font">
-               <font>
-                <bold>true</bold>
-               </font>
-              </property>
+             <widget class="StrongBodyLabel" name="qualityLabel">
               <property name="text">
                <string>音质</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="standardRadioButton">
+             <widget class="RadioButton" name="standardRadioButton">
               <property name="text">
                <string>标准(standard)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="higherRadioButton">
+             <widget class="RadioButton" name="higherRadioButton">
               <property name="text">
                <string>较高(higher)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="exhighRadioButton">
+             <widget class="RadioButton" name="exhighRadioButton">
               <property name="text">
                <string>极高(exhigh)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="losslessRadioButton">
+             <widget class="RadioButton" name="losslessRadioButton">
               <property name="text">
                <string>无损(lossless)</string>
               </property>
@@ -561,40 +508,35 @@
              <number>5</number>
             </property>
             <item>
-             <widget class="QLabel" name="filePropertiesLabel">
-              <property name="font">
-               <font>
-                <bold>true</bold>
-               </font>
-              </property>
+             <widget class="StrongBodyLabel" name="filePropertiesLabel">
               <property name="text">
                <string>文件属性</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="basicInfoCheckBox">
+             <widget class="CheckBox" name="basicInfoCheckBox">
               <property name="text">
                <string>基本信息添加</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="albumCoverCheckBox">
+             <widget class="CheckBox" name="albumCoverCheckBox">
               <property name="text">
                <string>专辑封面添加</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="lyricsDownloadCheckBox">
+             <widget class="CheckBox" name="lyricsDownloadCheckBox">
               <property name="text">
                <string>歌词下载</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="lyricsAddCheckBox">
+             <widget class="CheckBox" name="lyricsAddCheckBox">
               <property name="text">
                <string>歌词添加</string>
               </property>
@@ -620,19 +562,14 @@
              <number>5</number>
             </property>
             <item>
-             <widget class="QLabel" name="lyricsEncodingLabel">
-              <property name="font">
-               <font>
-                <bold>true</bold>
-               </font>
-              </property>
+             <widget class="StrongBodyLabel" name="lyricsEncodingLabel">
               <property name="text">
                <string>歌词编码方式</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="lyricsEncodingComboBox">
+             <widget class="ComboBox" name="lyricsEncodingComboBox">
               <item>
                <property name="text">
                 <string>GBK</string>
@@ -651,19 +588,14 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="albumCoverSizeLabel">
-              <property name="font">
-               <font>
-                <bold>true</bold>
-               </font>
-              </property>
+             <widget class="StrongBodyLabel" name="albumCoverSizeLabel">
               <property name="text">
                <string>专辑封面大小</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="albumCoverSizeSpinBox">
+             <widget class="SpinBox" name="albumCoverSizeSpinBox">
               <property name="minimum">
                <number>100</number>
               </property>
@@ -678,46 +610,43 @@
               </property>
              </widget>
             </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="fileSavingLayout">
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
-             <widget class="QLabel" name="fileSaveLocationLabel">
-              <property name="font">
-               <font>
-                <bold>true</bold>
-               </font>
-              </property>
+             <widget class="StrongBodyLabel" name="fileSaveLocationLabel">
               <property name="text">
                <string>文件保存位置</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="fileSaveLocationLineEdit">
+             <widget class="LineEdit" name="fileSaveLocationLineEdit">
               <property name="maxLength">
                <number>200</number>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="fileSaveLocationToolButton">
+             <widget class="ToolButton" name="fileSaveLocationToolButton">
               <property name="text">
                <string>...</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="filenameFormatLabel">
-              <property name="font">
-               <font>
-                <bold>true</bold>
-               </font>
-              </property>
+             <widget class="StrongBodyLabel" name="filenameFormatLabel">
               <property name="text">
                <string>文件格式</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="filenameFormatLineEdit"/>
+             <widget class="LineEdit" name="filenameFormatLineEdit"/>
             </item>
            </layout>
           </item>
@@ -751,7 +680,7 @@
             <item>
              <layout class="QHBoxLayout" name="downloadListProgressInnerLayout">
               <item>
-               <widget class="QLabel" name="downloadListProgressLabel">
+               <widget class="StrongBodyLabel" name="downloadListProgressLabel">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -764,7 +693,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QProgressBar" name="downloadListProgressBar">
+               <widget class="ProgressBar" name="downloadListProgressBar">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -793,7 +722,7 @@
                <number>0</number>
               </property>
               <item>
-               <widget class="QLabel" name="currentSongProgressLabel">
+               <widget class="StrongBodyLabel" name="currentSongProgressLabel">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -806,7 +735,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QProgressBar" name="currentSongProgressBar">
+               <widget class="ProgressBar" name="currentSongProgressBar">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -823,7 +752,7 @@
            </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="startDownloadButton">
+           <widget class="PrimaryPushButton" name="startDownloadButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -844,6 +773,73 @@
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>BodyLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>StrongBodyLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PrimaryPushButton</class>
+   <extends>QPushButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PushButton</class>
+   <extends>QPushButton</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PasswordLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>LineEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>CheckBox</class>
+   <extends>QCheckBox</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>RadioButton</class>
+   <extends>QRadioButton</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>ProgressBar</class>
+   <extends>QProgressBar</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>ToolButton</class>
+   <extends>QToolButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>TableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>SpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Frame</string>
   </property>
-  <widget class="QLabel" name="coverLabel">
+  <widget class="ImageLabel" name="coverLabel">
    <property name="geometry">
     <rect>
      <x>8</x>
@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 8px; background-color: white;</string>
+    <string notr="true"/>
    </property>
    <property name="frameShape">
     <enum>QFrame::Shape::StyledPanel</enum>
@@ -35,13 +35,13 @@
     <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="titleLabel">
+  <widget class="StrongBodyLabel" name="titleLabel">
    <property name="geometry">
     <rect>
      <x>64</x>
      <y>12</y>
      <width>328</width>
-     <height>24</height>
+     <height>16</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -50,38 +50,44 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>14</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
    <property name="text">
     <string>Title</string>
    </property>
   </widget>
-  <widget class="QLabel" name="aritstLabel">
+  <widget class="BodyLabel" name="artistLabel">
    <property name="geometry">
     <rect>
      <x>64</x>
-     <y>40</y>
+     <y>36</y>
      <width>328</width>
-     <height>12</height>
+     <height>16</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>8</pointsize>
-    </font>
-   </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(170, 170, 170);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Artist</string>
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ImageLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>BodyLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>StrongBodyLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
