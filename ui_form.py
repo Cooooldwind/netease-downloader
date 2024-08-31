@@ -15,12 +15,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
-    QFrame, QHBoxLayout, QHeaderView, QLabel,
-    QLayout, QLineEdit, QMainWindow, QProgressBar,
-    QPushButton, QRadioButton, QSizePolicy, QSpinBox,
-    QTableWidget, QTableWidgetItem, QToolButton, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
+    QHeaderView, QLayout, QMainWindow, QSizePolicy,
+    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+
+from qfluentwidgets import (BodyLabel, CheckBox, ComboBox, LineEdit,
+    PasswordLineEdit, PrimaryPushButton, ProgressBar, PushButton,
+    RadioButton, SpinBox, StrongBodyLabel, TableWidget,
+    ToolButton)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -65,7 +67,7 @@ class Ui_MainWindow(object):
         self.searchLayout.setSpacing(5)
         self.searchLayout.setObjectName(u"searchLayout")
         self.searchLayout.setContentsMargins(0, 0, 0, 0)
-        self.searchComboBox = QComboBox(self.horizontalLayoutWidget)
+        self.searchComboBox = ComboBox(self.horizontalLayoutWidget)
         self.searchComboBox.addItem("")
         self.searchComboBox.addItem("")
         self.searchComboBox.addItem("")
@@ -79,7 +81,7 @@ class Ui_MainWindow(object):
 
         self.searchLayout.addWidget(self.searchComboBox)
 
-        self.searchLineEdit = QLineEdit(self.horizontalLayoutWidget)
+        self.searchLineEdit = LineEdit(self.horizontalLayoutWidget)
         self.searchLineEdit.setObjectName(u"searchLineEdit")
         sizePolicy1.setHeightForWidth(self.searchLineEdit.sizePolicy().hasHeightForWidth())
         self.searchLineEdit.setSizePolicy(sizePolicy1)
@@ -87,7 +89,7 @@ class Ui_MainWindow(object):
 
         self.searchLayout.addWidget(self.searchLineEdit)
 
-        self.searchButton = QPushButton(self.horizontalLayoutWidget)
+        self.searchButton = PrimaryPushButton(self.horizontalLayoutWidget)
         self.searchButton.setObjectName(u"searchButton")
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
@@ -101,15 +103,13 @@ class Ui_MainWindow(object):
         self.leftVerticalLayout.addLayout(self.searchLayout)
 
         self.resultTableWidget = QTableWidget(self.horizontalLayoutWidget)
-        if (self.resultTableWidget.columnCount() < 2):
-            self.resultTableWidget.setColumnCount(2)
+        if (self.resultTableWidget.columnCount() < 1):
+            self.resultTableWidget.setColumnCount(1)
         __qtablewidgetitem = QTableWidgetItem()
         self.resultTableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.resultTableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         self.resultTableWidget.setObjectName(u"resultTableWidget")
-        self.resultTableWidget.setMinimumSize(QSize(440, 0))
-        self.resultTableWidget.setStyleSheet(u"background-color: white;")
+        self.resultTableWidget.setMinimumSize(QSize(500, 0))
+        self.resultTableWidget.setStyleSheet(u"")
         self.resultTableWidget.setFrameShape(QFrame.Shape.StyledPanel)
         self.resultTableWidget.setFrameShadow(QFrame.Shadow.Sunken)
         self.resultTableWidget.setLineWidth(1)
@@ -130,26 +130,26 @@ class Ui_MainWindow(object):
         self.selectionLayout.setSpacing(5)
         self.selectionLayout.setObjectName(u"selectionLayout")
         self.selectionLayout.setContentsMargins(0, 0, 0, 0)
-        self.selectionLabel = QLabel(self.horizontalLayoutWidget)
+        self.selectionLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.selectionLabel.setObjectName(u"selectionLabel")
         font = QFont()
-        font.setBold(True)
+        font.setBold(False)
         self.selectionLabel.setFont(font)
 
         self.selectionLayout.addWidget(self.selectionLabel)
 
-        self.selectionLineEdit = QLineEdit(self.horizontalLayoutWidget)
+        self.selectionLineEdit = LineEdit(self.horizontalLayoutWidget)
         self.selectionLineEdit.setObjectName(u"selectionLineEdit")
         self.selectionLineEdit.setMinimumSize(QSize(0, 0))
 
         self.selectionLayout.addWidget(self.selectionLineEdit)
 
-        self.selectAllButton = QPushButton(self.horizontalLayoutWidget)
+        self.selectAllButton = PushButton(self.horizontalLayoutWidget)
         self.selectAllButton.setObjectName(u"selectAllButton")
 
         self.selectionLayout.addWidget(self.selectAllButton)
 
-        self.addToDownloadListButton = QPushButton(self.horizontalLayoutWidget)
+        self.addToDownloadListButton = PrimaryPushButton(self.horizontalLayoutWidget)
         self.addToDownloadListButton.setObjectName(u"addToDownloadListButton")
 
         self.selectionLayout.addWidget(self.addToDownloadListButton)
@@ -157,7 +157,7 @@ class Ui_MainWindow(object):
 
         self.leftVerticalLayout.addLayout(self.selectionLayout)
 
-        self.infoLabel = QLabel(self.horizontalLayoutWidget)
+        self.infoLabel = BodyLabel(self.horizontalLayoutWidget)
         self.infoLabel.setObjectName(u"infoLabel")
         font1 = QFont()
         font1.setBold(False)
@@ -179,25 +179,28 @@ class Ui_MainWindow(object):
         self.loginLayout.setSpacing(5)
         self.loginLayout.setObjectName(u"loginLayout")
         self.loginLayout.setContentsMargins(0, 0, 0, 0)
-        self.loginLabel = QLabel(self.horizontalLayoutWidget)
+        self.loginLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.loginLabel.setObjectName(u"loginLabel")
-        self.loginLabel.setFont(font)
+        font2 = QFont()
+        font2.setBold(False)
+        font2.setKerning(True)
+        self.loginLabel.setFont(font2)
 
         self.loginLayout.addWidget(self.loginLabel)
 
-        self.loginLineEdit = QLineEdit(self.horizontalLayoutWidget)
+        self.loginLineEdit = PasswordLineEdit(self.horizontalLayoutWidget)
         self.loginLineEdit.setObjectName(u"loginLineEdit")
         self.loginLineEdit.setMaxLength(800)
         self.loginLineEdit.setClearButtonEnabled(False)
 
         self.loginLayout.addWidget(self.loginLineEdit)
 
-        self.loginButton = QPushButton(self.horizontalLayoutWidget)
+        self.loginButton = PrimaryPushButton(self.horizontalLayoutWidget)
         self.loginButton.setObjectName(u"loginButton")
 
         self.loginLayout.addWidget(self.loginButton)
 
-        self.browserLoginButton = QPushButton(self.horizontalLayoutWidget)
+        self.browserLoginButton = PushButton(self.horizontalLayoutWidget)
         self.browserLoginButton.setObjectName(u"browserLoginButton")
 
         self.loginLayout.addWidget(self.browserLoginButton)
@@ -208,26 +211,16 @@ class Ui_MainWindow(object):
         self.downloadListTitleLayout = QVBoxLayout()
         self.downloadListTitleLayout.setObjectName(u"downloadListTitleLayout")
         self.downloadListTitleLayout.setContentsMargins(0, 0, 0, 0)
-        self.downloadListLabel = QLabel(self.horizontalLayoutWidget)
+        self.downloadListLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.downloadListLabel.setObjectName(u"downloadListLabel")
-        self.downloadListLabel.setFont(font)
+        self.downloadListLabel.setFont(font2)
 
         self.downloadListTitleLayout.addWidget(self.downloadListLabel)
 
 
         self.rightVerticalLayout.addLayout(self.downloadListTitleLayout)
 
-        self.downloadListTableWidget = QTableWidget(self.horizontalLayoutWidget)
-        if (self.downloadListTableWidget.columnCount() < 4):
-            self.downloadListTableWidget.setColumnCount(4)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.downloadListTableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.downloadListTableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.downloadListTableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.downloadListTableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem5)
+        self.downloadListTableWidget = TableWidget(self.horizontalLayoutWidget)
         self.downloadListTableWidget.setObjectName(u"downloadListTableWidget")
 
         self.rightVerticalLayout.addWidget(self.downloadListTableWidget)
@@ -239,28 +232,28 @@ class Ui_MainWindow(object):
         self.qualityLayout.setSpacing(5)
         self.qualityLayout.setObjectName(u"qualityLayout")
         self.qualityLayout.setContentsMargins(5, 5, 5, 5)
-        self.qualityLabel = QLabel(self.horizontalLayoutWidget)
+        self.qualityLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.qualityLabel.setObjectName(u"qualityLabel")
-        self.qualityLabel.setFont(font)
+        self.qualityLabel.setFont(font2)
 
         self.qualityLayout.addWidget(self.qualityLabel)
 
-        self.standardRadioButton = QRadioButton(self.horizontalLayoutWidget)
+        self.standardRadioButton = RadioButton(self.horizontalLayoutWidget)
         self.standardRadioButton.setObjectName(u"standardRadioButton")
 
         self.qualityLayout.addWidget(self.standardRadioButton)
 
-        self.higherRadioButton = QRadioButton(self.horizontalLayoutWidget)
+        self.higherRadioButton = RadioButton(self.horizontalLayoutWidget)
         self.higherRadioButton.setObjectName(u"higherRadioButton")
 
         self.qualityLayout.addWidget(self.higherRadioButton)
 
-        self.exhighRadioButton = QRadioButton(self.horizontalLayoutWidget)
+        self.exhighRadioButton = RadioButton(self.horizontalLayoutWidget)
         self.exhighRadioButton.setObjectName(u"exhighRadioButton")
 
         self.qualityLayout.addWidget(self.exhighRadioButton)
 
-        self.losslessRadioButton = QRadioButton(self.horizontalLayoutWidget)
+        self.losslessRadioButton = RadioButton(self.horizontalLayoutWidget)
         self.losslessRadioButton.setObjectName(u"losslessRadioButton")
 
         self.qualityLayout.addWidget(self.losslessRadioButton)
@@ -272,28 +265,28 @@ class Ui_MainWindow(object):
         self.filePropertiesLayout.setSpacing(5)
         self.filePropertiesLayout.setObjectName(u"filePropertiesLayout")
         self.filePropertiesLayout.setContentsMargins(5, 5, 5, 5)
-        self.filePropertiesLabel = QLabel(self.horizontalLayoutWidget)
+        self.filePropertiesLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.filePropertiesLabel.setObjectName(u"filePropertiesLabel")
-        self.filePropertiesLabel.setFont(font)
+        self.filePropertiesLabel.setFont(font2)
 
         self.filePropertiesLayout.addWidget(self.filePropertiesLabel)
 
-        self.basicInfoCheckBox = QCheckBox(self.horizontalLayoutWidget)
+        self.basicInfoCheckBox = CheckBox(self.horizontalLayoutWidget)
         self.basicInfoCheckBox.setObjectName(u"basicInfoCheckBox")
 
         self.filePropertiesLayout.addWidget(self.basicInfoCheckBox)
 
-        self.albumCoverCheckBox = QCheckBox(self.horizontalLayoutWidget)
+        self.albumCoverCheckBox = CheckBox(self.horizontalLayoutWidget)
         self.albumCoverCheckBox.setObjectName(u"albumCoverCheckBox")
 
         self.filePropertiesLayout.addWidget(self.albumCoverCheckBox)
 
-        self.lyricsDownloadCheckBox = QCheckBox(self.horizontalLayoutWidget)
+        self.lyricsDownloadCheckBox = CheckBox(self.horizontalLayoutWidget)
         self.lyricsDownloadCheckBox.setObjectName(u"lyricsDownloadCheckBox")
 
         self.filePropertiesLayout.addWidget(self.lyricsDownloadCheckBox)
 
-        self.lyricsAddCheckBox = QCheckBox(self.horizontalLayoutWidget)
+        self.lyricsAddCheckBox = CheckBox(self.horizontalLayoutWidget)
         self.lyricsAddCheckBox.setObjectName(u"lyricsAddCheckBox")
 
         self.filePropertiesLayout.addWidget(self.lyricsAddCheckBox)
@@ -305,13 +298,13 @@ class Ui_MainWindow(object):
         self.lyricsEncodingLayout.setSpacing(5)
         self.lyricsEncodingLayout.setObjectName(u"lyricsEncodingLayout")
         self.lyricsEncodingLayout.setContentsMargins(5, 5, 5, 5)
-        self.lyricsEncodingLabel = QLabel(self.horizontalLayoutWidget)
+        self.lyricsEncodingLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.lyricsEncodingLabel.setObjectName(u"lyricsEncodingLabel")
-        self.lyricsEncodingLabel.setFont(font)
+        self.lyricsEncodingLabel.setFont(font2)
 
         self.lyricsEncodingLayout.addWidget(self.lyricsEncodingLabel)
 
-        self.lyricsEncodingComboBox = QComboBox(self.horizontalLayoutWidget)
+        self.lyricsEncodingComboBox = ComboBox(self.horizontalLayoutWidget)
         self.lyricsEncodingComboBox.addItem("")
         self.lyricsEncodingComboBox.addItem("")
         self.lyricsEncodingComboBox.addItem("")
@@ -319,13 +312,13 @@ class Ui_MainWindow(object):
 
         self.lyricsEncodingLayout.addWidget(self.lyricsEncodingComboBox)
 
-        self.albumCoverSizeLabel = QLabel(self.horizontalLayoutWidget)
+        self.albumCoverSizeLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.albumCoverSizeLabel.setObjectName(u"albumCoverSizeLabel")
-        self.albumCoverSizeLabel.setFont(font)
+        self.albumCoverSizeLabel.setFont(font2)
 
         self.lyricsEncodingLayout.addWidget(self.albumCoverSizeLabel)
 
-        self.albumCoverSizeSpinBox = QSpinBox(self.horizontalLayoutWidget)
+        self.albumCoverSizeSpinBox = SpinBox(self.horizontalLayoutWidget)
         self.albumCoverSizeSpinBox.setObjectName(u"albumCoverSizeSpinBox")
         self.albumCoverSizeSpinBox.setMinimum(100)
         self.albumCoverSizeSpinBox.setMaximum(2000)
@@ -334,36 +327,42 @@ class Ui_MainWindow(object):
 
         self.lyricsEncodingLayout.addWidget(self.albumCoverSizeSpinBox)
 
-        self.fileSaveLocationLabel = QLabel(self.horizontalLayoutWidget)
+
+        self.downloadSettingsLayout.addLayout(self.lyricsEncodingLayout)
+
+        self.fileSavingLayout = QHBoxLayout()
+        self.fileSavingLayout.setObjectName(u"fileSavingLayout")
+        self.fileSavingLayout.setContentsMargins(-1, -1, -1, 0)
+        self.fileSaveLocationLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.fileSaveLocationLabel.setObjectName(u"fileSaveLocationLabel")
         self.fileSaveLocationLabel.setFont(font)
 
-        self.lyricsEncodingLayout.addWidget(self.fileSaveLocationLabel)
+        self.fileSavingLayout.addWidget(self.fileSaveLocationLabel)
 
-        self.fileSaveLocationLineEdit = QLineEdit(self.horizontalLayoutWidget)
+        self.fileSaveLocationLineEdit = LineEdit(self.horizontalLayoutWidget)
         self.fileSaveLocationLineEdit.setObjectName(u"fileSaveLocationLineEdit")
         self.fileSaveLocationLineEdit.setMaxLength(200)
 
-        self.lyricsEncodingLayout.addWidget(self.fileSaveLocationLineEdit)
+        self.fileSavingLayout.addWidget(self.fileSaveLocationLineEdit)
 
-        self.fileSaveLocationToolButton = QToolButton(self.horizontalLayoutWidget)
+        self.fileSaveLocationToolButton = ToolButton(self.horizontalLayoutWidget)
         self.fileSaveLocationToolButton.setObjectName(u"fileSaveLocationToolButton")
 
-        self.lyricsEncodingLayout.addWidget(self.fileSaveLocationToolButton)
+        self.fileSavingLayout.addWidget(self.fileSaveLocationToolButton)
 
-        self.filenameFormatLabel = QLabel(self.horizontalLayoutWidget)
+        self.filenameFormatLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.filenameFormatLabel.setObjectName(u"filenameFormatLabel")
         self.filenameFormatLabel.setFont(font)
 
-        self.lyricsEncodingLayout.addWidget(self.filenameFormatLabel)
+        self.fileSavingLayout.addWidget(self.filenameFormatLabel)
 
-        self.filenameFormatLineEdit = QLineEdit(self.horizontalLayoutWidget)
+        self.filenameFormatLineEdit = LineEdit(self.horizontalLayoutWidget)
         self.filenameFormatLineEdit.setObjectName(u"filenameFormatLineEdit")
 
-        self.lyricsEncodingLayout.addWidget(self.filenameFormatLineEdit)
+        self.fileSavingLayout.addWidget(self.filenameFormatLineEdit)
 
 
-        self.downloadSettingsLayout.addLayout(self.lyricsEncodingLayout)
+        self.downloadSettingsLayout.addLayout(self.fileSavingLayout)
 
 
         self.rightVerticalLayout.addLayout(self.downloadSettingsLayout)
@@ -376,17 +375,18 @@ class Ui_MainWindow(object):
         self.downloadListProgressLayout.setContentsMargins(0, 0, 0, 0)
         self.downloadListProgressInnerLayout = QHBoxLayout()
         self.downloadListProgressInnerLayout.setObjectName(u"downloadListProgressInnerLayout")
-        self.downloadListProgressLabel = QLabel(self.horizontalLayoutWidget)
+        self.downloadListProgressLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.downloadListProgressLabel.setObjectName(u"downloadListProgressLabel")
         sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.downloadListProgressLabel.sizePolicy().hasHeightForWidth())
         self.downloadListProgressLabel.setSizePolicy(sizePolicy3)
+        self.downloadListProgressLabel.setFont(font2)
 
         self.downloadListProgressInnerLayout.addWidget(self.downloadListProgressLabel)
 
-        self.downloadListProgressBar = QProgressBar(self.horizontalLayoutWidget)
+        self.downloadListProgressBar = ProgressBar(self.horizontalLayoutWidget)
         self.downloadListProgressBar.setObjectName(u"downloadListProgressBar")
         sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
@@ -403,14 +403,15 @@ class Ui_MainWindow(object):
         self.currentSongProgressLayout = QHBoxLayout()
         self.currentSongProgressLayout.setObjectName(u"currentSongProgressLayout")
         self.currentSongProgressLayout.setContentsMargins(0, 0, 0, 0)
-        self.currentSongProgressLabel = QLabel(self.horizontalLayoutWidget)
+        self.currentSongProgressLabel = StrongBodyLabel(self.horizontalLayoutWidget)
         self.currentSongProgressLabel.setObjectName(u"currentSongProgressLabel")
         sizePolicy3.setHeightForWidth(self.currentSongProgressLabel.sizePolicy().hasHeightForWidth())
         self.currentSongProgressLabel.setSizePolicy(sizePolicy3)
+        self.currentSongProgressLabel.setFont(font2)
 
         self.currentSongProgressLayout.addWidget(self.currentSongProgressLabel)
 
-        self.currentSongProgressBar = QProgressBar(self.horizontalLayoutWidget)
+        self.currentSongProgressBar = ProgressBar(self.horizontalLayoutWidget)
         self.currentSongProgressBar.setObjectName(u"currentSongProgressBar")
         sizePolicy4.setHeightForWidth(self.currentSongProgressBar.sizePolicy().hasHeightForWidth())
         self.currentSongProgressBar.setSizePolicy(sizePolicy4)
@@ -424,7 +425,7 @@ class Ui_MainWindow(object):
 
         self.downloadingLayout.addLayout(self.downloadListProgressLayout)
 
-        self.startDownloadButton = QPushButton(self.horizontalLayoutWidget)
+        self.startDownloadButton = PrimaryPushButton(self.horizontalLayoutWidget)
         self.startDownloadButton.setObjectName(u"startDownloadButton")
         sizePolicy3.setHeightForWidth(self.startDownloadButton.sizePolicy().hasHeightForWidth())
         self.startDownloadButton.setSizePolicy(sizePolicy3)
@@ -455,9 +456,7 @@ class Ui_MainWindow(object):
 
         self.searchButton.setText(QCoreApplication.translate("MainWindow", u"\u641c\u7d22", None))
         ___qtablewidgetitem = self.resultTableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u6b4c\u66f2", None));
-        ___qtablewidgetitem1 = self.resultTableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"\u9009\u4e2d", None));
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Item", None));
         self.selectionLabel.setText(QCoreApplication.translate("MainWindow", u"\u591a\u9879\u9009\u62e9", None))
 #if QT_CONFIG(tooltip)
         self.selectionLineEdit.setToolTip("")
@@ -474,14 +473,6 @@ class Ui_MainWindow(object):
         self.loginButton.setText(QCoreApplication.translate("MainWindow", u"\u767b\u5f55", None))
         self.browserLoginButton.setText(QCoreApplication.translate("MainWindow", u"\u6d4f\u89c8\u5668\u6a21\u62df\u767b\u5f55", None))
         self.downloadListLabel.setText(QCoreApplication.translate("MainWindow", u"\u4e0b\u8f7d\u5217\u8868", None))
-        ___qtablewidgetitem2 = self.downloadListTableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"ID", None));
-        ___qtablewidgetitem3 = self.downloadListTableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"\u6807\u9898", None));
-        ___qtablewidgetitem4 = self.downloadListTableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"\u6b4c\u624b", None));
-        ___qtablewidgetitem5 = self.downloadListTableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"\u4e13\u8f91", None));
         self.qualityLabel.setText(QCoreApplication.translate("MainWindow", u"\u97f3\u8d28", None))
         self.standardRadioButton.setText(QCoreApplication.translate("MainWindow", u"\u6807\u51c6(standard)", None))
         self.higherRadioButton.setText(QCoreApplication.translate("MainWindow", u"\u8f83\u9ad8(higher)", None))

@@ -14,6 +14,7 @@ from netease_encode_api import EncodeSession
 from ui_form import Ui_MainWindow
 from typing import List, Dict
 from music_frame import Ui_Frame
+from music_widget import Ui_musicWidget
 
 # for cover picture
 from PySide6.QtGui import QPixmap, QImage
@@ -61,7 +62,7 @@ class EventThread(QThread):
                     pass
                 except Exception as e:
                     print(e)
-                    continue
+                    pass
                 finally:
                     sorted.update({
                         "title": title,
@@ -103,6 +104,8 @@ class MainWindow(QMainWindow):
         self.ui.lyricsAddCheckBox.clicked.connect(self.status_update)
         self.ui.albumCoverCheckBox.clicked.connect(self.status_update)
         self.ui.lyricsDownloadCheckBox.clicked.connect(self.status_update)
+        # self.ui.resultTableWidget.setBorderVisible(True)
+        # self.ui.resultTableWidget.setBorderRadius(8)
         self.cookie = {}
 
     def search(self):
@@ -115,8 +118,7 @@ class MainWindow(QMainWindow):
             self.event_thread.encode_session = self.encode_session
             self.event_thread.mode1_signal.connect(self.update_result_table)
             self.event_thread.start()
-            self.ui.infoLabel.setText("正在获取歌单......")        
-
+            self.ui.infoLabel.setText("正在获取歌单......")
     def search_end(self):
         self.ui.infoLabel.setText(f"歌单 \"{self.event_thread.result["title"]}\" 获取完成,，共 {str(self.event_thread.result["track_count"])} 首歌曲。")
         self.update()
@@ -125,20 +127,20 @@ class MainWindow(QMainWindow):
     def update_result_table(self, result):
         if self.search_mode == 1:
             result = dict(result)
-            if self.ui.resultTableWidget.rowCount() != int(result["row"]):
-                self.ui.resultTableWidget.setRowCount(result["row"])
-            new_frame = Ui_Frame()
-            frame_widget = QWidget()
-            new_frame.setupUi(frame_widget)
-            new_frame.titleLabel.setText(result["title"])
-            new_frame.aritstLabel.setText(result["artist"])
+            new = Ui_musicWidget()
+            widget = QWidget()
+            new.setupUi(widget)
+            new.titleLabel.setText(result["title"])
+            new.artistLabel.setText(result["artist"])
             img = QImage.fromData(result["data"] if result["data"] != b"" else global_bin.DEFAULT_COVER)
-            pixmap = QPixmap.fromImage(img)
-            new_frame.coverLabel.setPixmap(pixmap)
-            new_frame.coverLabel.setStyleSheet(new_frame.coverLabel.styleSheet() + "border-radius: 8px;")
+            new.coverLabel.setImage(img)
+            new.coverLabel.scaledToWidth(48)
+            new.coverLabel.scaledToHeight(48)
+            new.coverLabel.setBorderRadius(8,8,8,8)
+            self.ui.resultTableWidget.setRowCount(int(result["index"]))
             self.ui.resultTableWidget.setColumnWidth(0, 400)
             self.ui.resultTableWidget.setRowHeight(result["index"], 64)
-            self.ui.resultTableWidget.setCellWidget(result["index"], 0, frame_widget)
+            self.ui.resultTableWidget.setCellWidget(int(result["index"]), 0, widget)
             self.ui.infoLabel.setText(f"正在加载歌单... {result["index"]}/{result["row"]}")
             self.update()
         return None
