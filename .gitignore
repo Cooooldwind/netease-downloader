@@ -73,3 +73,6 @@ CMakeLists.txt.user*
 *.exe
 
 NeteaseDownloader.pyproject.user
+NeteaseDownloader.spec
+build/
+dist/
