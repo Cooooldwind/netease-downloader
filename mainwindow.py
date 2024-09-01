@@ -156,17 +156,15 @@ class MainWindow(QMainWindow):
             check_box = qfluentwidgets.CheckBox()
             check_box.stateChanged.connect(self.table_clicked)
             self.ui.resultTableWidget.setCellWidget(result["index"], 2, check_box)
-            # self.ui.resultTableWidget.cellClicked.connect(self.table_clicked)
-            """
-            list_widget.addItem(item)
-            list_widget.setItemWidget(item, check_box)
-            """
+            self.ui.resultTableWidget.setColumnWidth(2, 80)
             self.ui.infoLabel.setText(f"正在加载歌单... {result["index"]}/{result["row"]}")
             self.update()
         return None
 
     def table_clicked(self):
-        print("huh")
+        for row in range(self.ui.resultTableWidget.rowCount()):
+            checkbox = self.ui.resultTableWidget.cellWidget(row, 2)
+            print(f"Row {row} checkbox is {'checked' if checkbox.isChecked() else 'unchecked'}")
 
     def search_mode_change(self):
         self.search_mode = self.ui.searchComboBox.currentIndex()
