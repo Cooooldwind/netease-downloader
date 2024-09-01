@@ -3,7 +3,7 @@ import sys
 import time
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QThread, QEventLoop, Signal, Slot
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QCheckBox, QHeaderView, QTableWidgetItem
 from login import LoginSubWindow
 from netease_encode_api import EncodeSession
 
@@ -25,6 +25,7 @@ from class163 import Music, Playlist
 from pprint import pprint
 from class163.music import artist_join
 import requests
+import qfluentwidgets
 import global_bin
 
 
@@ -106,6 +107,11 @@ class MainWindow(QMainWindow):
         self.ui.lyricsDownloadCheckBox.clicked.connect(self.status_update)
         self.ui.resultTableWidget.setBorderVisible(True)
         self.ui.resultTableWidget.setBorderRadius(8)
+        self.ui.resultTableWidget.setColumnWidth(0, 120)
+        self.ui.resultTableWidget.setColumnWidth(1, 400)
+        self.ui.resultTableWidget.setColumnWidth(2, 80)
+        qfluentwidgets.setThemeColor("#fc3d49")
+        qfluentwidgets.setTheme(qfluentwidgets.Theme.LIGHT)
         self.cookie = {}
 
     def search(self):
@@ -119,6 +125,7 @@ class MainWindow(QMainWindow):
             self.event_thread.mode1_signal.connect(self.update_result_table)
             self.event_thread.start()
             self.ui.infoLabel.setText("正在获取歌单......")
+    
     def search_end(self):
         self.ui.infoLabel.setText(f"歌单 \"{self.event_thread.result["title"]}\" 获取完成,，共 {str(self.event_thread.result["track_count"])} 首歌曲。")
         self.update()
@@ -131,6 +138,10 @@ class MainWindow(QMainWindow):
                 self.ui.resultTableWidget.setRowCount(result["row"])
                 for i in range(result["row"]):
                     self.ui.resultTableWidget.hideRow(i)
+            # 序号
+            index = QTableWidgetItem(str(result["index"]+1))
+            self.ui.resultTableWidget.setItem(result["index"], 0, index)
+            # 歌曲列
             new_frame = Ui_Frame()
             frame_widget = QWidget()
             new_frame.setupUi(frame_widget)
@@ -140,12 +151,22 @@ class MainWindow(QMainWindow):
             new_frame.coverLabel.setImage(img)
             new_frame.coverLabel.setBorderRadius(8, 8, 8, 8)
             self.ui.resultTableWidget.showRow(result["index"])
-            self.ui.resultTableWidget.setColumnWidth(0, 400)
             self.ui.resultTableWidget.setRowHeight(result["index"], 64)
-            self.ui.resultTableWidget.setCellWidget(result["index"], 0, frame_widget)
+            self.ui.resultTableWidget.setCellWidget(result["index"], 1, frame_widget)
+            check_box = qfluentwidgets.CheckBox()
+            check_box.stateChanged.connect(self.table_clicked)
+            self.ui.resultTableWidget.setCellWidget(result["index"], 2, check_box)
+            # self.ui.resultTableWidget.cellClicked.connect(self.table_clicked)
+            """
+            list_widget.addItem(item)
+            list_widget.setItemWidget(item, check_box)
+            """
             self.ui.infoLabel.setText(f"正在加载歌单... {result["index"]}/{result["row"]}")
             self.update()
         return None
+
+    def table_clicked(self):
+        print("huh")
 
     def search_mode_change(self):
         self.search_mode = self.ui.searchComboBox.currentIndex()

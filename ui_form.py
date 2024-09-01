@@ -28,31 +28,31 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1100, 600)
+        MainWindow.resize(1200, 800)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMaximumSize(QSize(1100, 600))
+        MainWindow.setMaximumSize(QSize(1200, 800))
         self.centralWidget = QWidget(MainWindow)
         self.centralWidget.setObjectName(u"centralWidget")
         sizePolicy.setHeightForWidth(self.centralWidget.sizePolicy().hasHeightForWidth())
         self.centralWidget.setSizePolicy(sizePolicy)
-        self.centralWidget.setMinimumSize(QSize(1100, 600))
+        self.centralWidget.setMinimumSize(QSize(1200, 800))
         self.centralWidget.setMaximumSize(QSize(16777215, 16777215))
         self.mainFrame = QFrame(self.centralWidget)
         self.mainFrame.setObjectName(u"mainFrame")
-        self.mainFrame.setGeometry(QRect(0, 0, 1100, 600))
+        self.mainFrame.setGeometry(QRect(0, 0, 1200, 800))
         sizePolicy.setHeightForWidth(self.mainFrame.sizePolicy().hasHeightForWidth())
         self.mainFrame.setSizePolicy(sizePolicy)
-        self.mainFrame.setMinimumSize(QSize(1100, 600))
+        self.mainFrame.setMinimumSize(QSize(1200, 800))
         self.mainFrame.setMaximumSize(QSize(16777215, 16777215))
         self.mainFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.mainFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayoutWidget = QWidget(self.mainFrame)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 1101, 601))
+        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 1201, 801))
         self.mainHorizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.mainHorizontalLayout.setSpacing(5)
         self.mainHorizontalLayout.setObjectName(u"mainHorizontalLayout")
@@ -103,12 +103,16 @@ class Ui_MainWindow(object):
         self.leftVerticalLayout.addLayout(self.searchLayout)
 
         self.resultTableWidget = TableWidget(self.horizontalLayoutWidget)
-        if (self.resultTableWidget.columnCount() < 1):
-            self.resultTableWidget.setColumnCount(1)
+        if (self.resultTableWidget.columnCount() < 3):
+            self.resultTableWidget.setColumnCount(3)
         __qtablewidgetitem = QTableWidgetItem()
         self.resultTableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.resultTableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.resultTableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         self.resultTableWidget.setObjectName(u"resultTableWidget")
-        self.resultTableWidget.setMinimumSize(QSize(500, 0))
+        self.resultTableWidget.setMinimumSize(QSize(600, 0))
         self.resultTableWidget.setStyleSheet(u"")
         self.resultTableWidget.setFrameShape(QFrame.Shape.StyledPanel)
         self.resultTableWidget.setFrameShadow(QFrame.Shadow.Sunken)
@@ -117,6 +121,7 @@ class Ui_MainWindow(object):
         self.resultTableWidget.setDragDropOverwriteMode(True)
         self.resultTableWidget.setShowGrid(False)
         self.resultTableWidget.setCornerButtonEnabled(False)
+        self.resultTableWidget.verticalHeader().setVisible(False)
 
         self.leftVerticalLayout.addWidget(self.resultTableWidget)
 
@@ -435,7 +440,11 @@ class Ui_MainWindow(object):
 
         self.searchButton.setText(QCoreApplication.translate("MainWindow", u"\u641c\u7d22", None))
         ___qtablewidgetitem = self.resultTableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u6b4c\u66f2", None));
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"#", None));
+        ___qtablewidgetitem1 = self.resultTableWidget.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"\u6b4c\u66f2", None));
+        ___qtablewidgetitem2 = self.resultTableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"\u9009\u4e2d", None));
         self.selectionLabel.setText(QCoreApplication.translate("MainWindow", u"\u591a\u9879\u9009\u62e9", None))
 #if QT_CONFIG(tooltip)
         self.selectionLineEdit.setToolTip("")

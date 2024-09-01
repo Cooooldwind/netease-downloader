@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,8 +18,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>1100</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>800</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -34,8 +34,8 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>1100</width>
-     <height>600</height>
+     <width>1200</width>
+     <height>800</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -49,8 +49,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1100</width>
-      <height>600</height>
+      <width>1200</width>
+      <height>800</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -61,8 +61,8 @@
     </property>
     <property name="minimumSize">
      <size>
-      <width>1100</width>
-      <height>600</height>
+      <width>1200</width>
+      <height>800</height>
      </size>
     </property>
     <property name="maximumSize">
@@ -82,8 +82,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1101</width>
-       <height>601</height>
+       <width>1201</width>
+       <height>801</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="mainHorizontalLayout" stretch="2,3">
@@ -204,7 +204,7 @@
          <widget class="TableWidget" name="resultTableWidget">
           <property name="minimumSize">
            <size>
-            <width>500</width>
+            <width>600</width>
             <height>0</height>
            </size>
           </property>
@@ -232,9 +232,22 @@
           <property name="cornerButtonEnabled">
            <bool>false</bool>
           </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>#</string>
+           </property>
+          </column>
           <column>
            <property name="text">
             <string>歌曲</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>选中</string>
            </property>
           </column>
          </widget>
