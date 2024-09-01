@@ -21,8 +21,7 @@ from PySide6.QtGui import QPixmap, QImage
 from class163.origin_file import OriginFile
 
 # temp
-from class163 import Music, Playlist
-from pprint import pprint
+from class163 import Playlist
 from class163.music import artist_join
 import requests
 import qfluentwidgets

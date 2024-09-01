@@ -76,3 +76,6 @@ NeteaseDownloader.pyproject.user
 NeteaseDownloader.spec
 build/
 dist/
+mainwindow.spec
+Pipfile
+Pipfile.lock
