@@ -105,6 +105,7 @@ class MainWindow(QMainWindow):
         self.ui.lyricsAddCheckBox.clicked.connect(self.status_update)
         self.ui.albumCoverCheckBox.clicked.connect(self.status_update)
         self.ui.lyricsDownloadCheckBox.clicked.connect(self.status_update)
+        self.ui.selectAllButton.clicked.connect(self.select_all)
         self.ui.resultTableWidget.setBorderVisible(True)
         self.ui.resultTableWidget.setBorderRadius(8)
         self.ui.resultTableWidget.setColumnWidth(0, 120)
@@ -150,21 +151,30 @@ class MainWindow(QMainWindow):
             img = QImage.fromData(result["data"] if result["data"] != b"" else global_bin.DEFAULT_COVER)
             new_frame.coverLabel.setImage(img)
             new_frame.coverLabel.setBorderRadius(8, 8, 8, 8)
-            self.ui.resultTableWidget.showRow(result["index"])
-            self.ui.resultTableWidget.setRowHeight(result["index"], 64)
-            self.ui.resultTableWidget.setCellWidget(result["index"], 1, frame_widget)
             check_box = qfluentwidgets.CheckBox()
             check_box.stateChanged.connect(self.table_clicked)
             self.ui.resultTableWidget.setCellWidget(result["index"], 2, check_box)
-            self.ui.resultTableWidget.setColumnWidth(2, 80)
+            self.ui.resultTableWidget.showRow(result["index"])
+            self.ui.resultTableWidget.setRowHeight(result["index"], 64)
+            self.ui.resultTableWidget.setCellWidget(result["index"], 1, frame_widget)
+            # self.ui.resultTableWidget.setColumnWidth(2, 80)
             self.ui.infoLabel.setText(f"正在加载歌单... {result["index"]}/{result["row"]}")
             self.update()
+            # self.ui.resultTableWidget.showRow(result["index"]+1)
         return None
 
     def table_clicked(self):
+        result = []
         for row in range(self.ui.resultTableWidget.rowCount()):
-            checkbox = self.ui.resultTableWidget.cellWidget(row, 2)
-            print(f"Row {row} checkbox is {'checked' if checkbox.isChecked() else 'unchecked'}")
+            result.append(self.ui.resultTableWidget.cellWidget(row, 2).isChecked())
+        print(result)
+
+    def select_all(self):
+        result = []
+        for row in range(self.ui.resultTableWidget.rowCount()):
+            self.ui.resultTableWidget.cellWidget(row, 2).setChecked(True)
+            result.append(self.ui.resultTableWidget.cellWidget(row, 2).isChecked())
+        print(result)
 
     def search_mode_change(self):
         self.search_mode = self.ui.searchComboBox.currentIndex()
