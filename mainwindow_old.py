@@ -11,9 +11,9 @@ from netease_encode_api import EncodeSession
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
 #     pyside2-uic form.ui -o ui_form.py
-from ui_form import Ui_MainWindow
+from ui.main_window import Ui_MainWindow
 from typing import List, Dict
-from music_frame import Ui_Frame
+from ui.music_frame import Ui_Frame
 from music_widget import Ui_musicWidget
 
 # for cover picture
@@ -25,7 +25,7 @@ from class163 import Playlist
 from class163.music import artist_join
 import requests
 import qfluentwidgets
-import global_bin
+import global_args.global_bin as global_bin
 
 
 class EventThread(QThread):
