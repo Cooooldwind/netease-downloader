@@ -16,8 +16,8 @@ class SearchResultModel:
     def get_info(self):
         if self.mode == "playlist_id":
             playlist = Playlist(self.id)
-            print(self.id)
-            playlist.get_detail(each_music=True, session=self.encode_session)
+            playlist.get_detail(each_music=False, session=self.encode_session)
+            for i in playlist.track: i.update_encode_data()
             self.result_list = playlist.track
             self.result_dict = playlist.info_dict()
             return None

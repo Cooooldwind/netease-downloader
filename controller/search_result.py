@@ -10,6 +10,7 @@ from netease_encode_api import EncodeSession
 
 from global_args.global_bin import DEFAULT_COVER
 
+
 class SearchResultController(QThread):
     update_init_signal = Signal(dict)
     update_signal = Signal(Music)
@@ -35,8 +36,11 @@ class SearchResultController(QThread):
                 cover_existed = True
                 i.cover_file_url = i.cover_file_url + "?param=48y48"
                 i.cover_file = OriginFile(i.cover_file_url)
-                try: i.cover_file.begin_download()
-                except: pass
+                try:
+                    i.cover_file.begin_download()
+                except:
+                    pass
+            cnt += 1
             result_dict.update(
                 {
                     "data": i.cover_file.get_data() if cover_existed else DEFAULT_COVER,
@@ -44,7 +48,7 @@ class SearchResultController(QThread):
                     "artist": artist_join(i.artist, "/"),
                     "index": cnt,
                     "row": len(self.model.result_list),
+                    "from": self.model.result_dict["title"],
                 }
             )
             self.update_signal.emit(result_dict)
-            cnt += 1

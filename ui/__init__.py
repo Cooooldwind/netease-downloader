@@ -1,7 +1,6 @@
 # This Python file uses the following encoding: utf-8
-import sys
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QTableWidgetItem
+from PySide6.QtWidgets import QMainWindow, QWidget, QTableWidgetItem
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -10,8 +9,8 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QTableWidgetIt
 from ui.main_window import Ui_MainWindow
 
 # pySide6
-from PySide6.QtCore import Slot, Signal, QObject
-from PySide6.QtGui import QPixmap, QImage
+from PySide6.QtCore import Slot
+from PySide6.QtGui import QImage
 
 # netease_encode_api
 from netease_encode_api import EncodeSession
@@ -62,6 +61,7 @@ class MainWindow(QMainWindow):
         self.search_controller.update_signal.connect(self.update_result_table)
         self.search_controller.model.id = self.ui.searchLineEdit.text()
         self.search_controller.start()
+        self.ui.infoLabel.setText("正在加载...")
 
     @Slot(dict)
     def result_table_init(self, result):
@@ -69,6 +69,7 @@ class MainWindow(QMainWindow):
         self.ui.resultTableWidget.setRowCount(cnt)
         for i in range(cnt):
             self.ui.resultTableWidget.hideRow(i)
+        self.ui.infoLabel.setText(f"正在加载歌单\"{result["title"]}\"...")
 
     @Slot(Music)
     def update_result_table(self, result):
@@ -87,11 +88,7 @@ class MainWindow(QMainWindow):
         self.ui.resultTableWidget.showRow(result["index"])
         self.ui.resultTableWidget.setRowHeight(result["index"], 64)
         self.ui.resultTableWidget.setCellWidget(result["index"], 1, frame_widget)
-        self.ui.resultTableWidget.setItem(result["index"], 0, QTableWidgetItem(text=str(result["index"])))
-        self.ui.infoLabel.setText(f"正在加载歌单... {result["index"]}/{result["row"]}")
+        self.ui.resultTableWidget.setItem(result["index"], 0, QTableWidgetItem(f"{result["index"]}"))
+        self.ui.infoLabel.setText(f"正在加载歌单\"{result["from"]}\"...已加载{result["index"]}/{result["row"]}")
         self.update()
-
-
-
-
 
