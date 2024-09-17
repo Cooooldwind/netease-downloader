@@ -16,6 +16,7 @@ exe = Executable(
 # 打包的参数配置
 options = {
     "build_exe": {
+        "build_exe": "NeteaseDownloader",
         "packages": [
             "PySide6.QtWidgets",
             "PySide6.QtCore",
@@ -27,7 +28,7 @@ options = {
         "excludes": [],  # 不需要打包的Python包列表
         # "include_files": ["data/config.json", "downloads/"],  # 需要包含的文件或文件夹
         "include_msvcr": True,  # 是否包含Microsoft Visual C++运行时库
-        "optimize": 2,  # 启用Python优化（可选）
+        # "optimize": 2,  # 启用Python优化（可选）
     }
 }
 
