@@ -79,3 +79,4 @@ dist/
 mainwindow.spec
 Pipfile
 Pipfile.lock
+NeteaseDownloader/
