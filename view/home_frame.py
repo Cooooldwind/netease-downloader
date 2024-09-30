@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'home_interface_frame.ui'
+## Form generated from reading UI file 'home_frame.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -20,24 +20,24 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLayout,
 
 from qfluentwidgets import (ComboBox, PushButton, SearchLineEdit, TitleLabel)
 
-class Ui_HomeInterface(object):
-    def setupUi(self, HomeInterface):
-        if not HomeInterface.objectName():
-            HomeInterface.setObjectName(u"HomeInterface")
-        HomeInterface.resize(400, 300)
+class Ui_Home(object):
+    def setupUi(self, Home):
+        if not Home.objectName():
+            Home.setObjectName(u"Home")
+        Home.resize(400, 300)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(HomeInterface.sizePolicy().hasHeightForWidth())
-        HomeInterface.setSizePolicy(sizePolicy)
-        self.verticalLayoutWidget = QWidget(HomeInterface)
-        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(-1, -1, 401, 301))
-        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
+        sizePolicy.setHeightForWidth(Home.sizePolicy().hasHeightForWidth())
+        Home.setSizePolicy(sizePolicy)
+        self.horizontalLayout_2 = QHBoxLayout(Home)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setSpacing(5)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self.verticalLayout.setContentsMargins(5, 5, 5, 5)
-        self.WelcomeLabel = TitleLabel(self.verticalLayoutWidget)
+        self.WelcomeLabel = TitleLabel(Home)
         self.WelcomeLabel.setObjectName(u"WelcomeLabel")
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
@@ -50,9 +50,8 @@ class Ui_HomeInterface(object):
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setSpacing(5)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
         self.horizontalLayout.setContentsMargins(5, -1, 5, -1)
-        self.SearchTypeComboBox = ComboBox(self.verticalLayoutWidget)
+        self.SearchTypeComboBox = ComboBox(Home)
         self.SearchTypeComboBox.addItem("")
         self.SearchTypeComboBox.addItem("")
         self.SearchTypeComboBox.addItem("")
@@ -61,7 +60,7 @@ class Ui_HomeInterface(object):
 
         self.horizontalLayout.addWidget(self.SearchTypeComboBox)
 
-        self.SearchKeyLineEdit = SearchLineEdit(self.verticalLayoutWidget)
+        self.SearchKeyLineEdit = SearchLineEdit(Home)
         self.SearchKeyLineEdit.setObjectName(u"SearchKeyLineEdit")
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
@@ -71,7 +70,7 @@ class Ui_HomeInterface(object):
 
         self.horizontalLayout.addWidget(self.SearchKeyLineEdit)
 
-        self.LoginButton = PushButton(self.verticalLayoutWidget)
+        self.LoginButton = PushButton(Home)
         self.LoginButton.setObjectName(u"LoginButton")
 
         self.horizontalLayout.addWidget(self.LoginButton)
@@ -79,25 +78,29 @@ class Ui_HomeInterface(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.listView = QListView(self.verticalLayoutWidget)
-        self.listView.setObjectName(u"listView")
+        self.ListView = QListView(Home)
+        self.ListView.setObjectName(u"ListView")
+        self.ListView.setFlow(QListView.Flow.LeftToRight)
 
-        self.verticalLayout.addWidget(self.listView)
+        self.verticalLayout.addWidget(self.ListView)
 
 
-        self.retranslateUi(HomeInterface)
+        self.horizontalLayout_2.addLayout(self.verticalLayout)
 
-        QMetaObject.connectSlotsByName(HomeInterface)
+
+        self.retranslateUi(Home)
+
+        QMetaObject.connectSlotsByName(Home)
     # setupUi
 
-    def retranslateUi(self, HomeInterface):
-        HomeInterface.setWindowTitle(QCoreApplication.translate("HomeInterface", u"Frame", None))
-        self.WelcomeLabel.setText(QCoreApplication.translate("HomeInterface", u"\u6b22\u8fce\u4f7f\u7528 NeteaseDownloader!", None))
-        self.SearchTypeComboBox.setItemText(0, QCoreApplication.translate("HomeInterface", u"\u6b4c\u66f2ID/Url", None))
-        self.SearchTypeComboBox.setItemText(1, QCoreApplication.translate("HomeInterface", u"\u6b4c\u5355ID/Url", None))
-        self.SearchTypeComboBox.setItemText(2, QCoreApplication.translate("HomeInterface", u"\u641c\u7d22\u6b4c\u66f2", None))
-        self.SearchTypeComboBox.setItemText(3, QCoreApplication.translate("HomeInterface", u"\u641c\u7d22\u6b4c\u5355", None))
+    def retranslateUi(self, Home):
+        Home.setWindowTitle(QCoreApplication.translate("Home", u"Frame", None))
+        self.WelcomeLabel.setText(QCoreApplication.translate("Home", u"\u6b22\u8fce\u4f7f\u7528 NeteaseDownloader!", None))
+        self.SearchTypeComboBox.setItemText(0, QCoreApplication.translate("Home", u"\u6b4c\u66f2ID/Url", None))
+        self.SearchTypeComboBox.setItemText(1, QCoreApplication.translate("Home", u"\u6b4c\u5355ID/Url", None))
+        self.SearchTypeComboBox.setItemText(2, QCoreApplication.translate("Home", u"\u641c\u7d22\u6b4c\u66f2", None))
+        self.SearchTypeComboBox.setItemText(3, QCoreApplication.translate("Home", u"\u641c\u7d22\u6b4c\u5355", None))
 
-        self.LoginButton.setText(QCoreApplication.translate("HomeInterface", u"\u767b\u5f55", None))
+        self.LoginButton.setText(QCoreApplication.translate("Home", u"\u767b\u5f55", None))
     # retranslateUi
 

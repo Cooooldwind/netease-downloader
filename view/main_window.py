@@ -1,12 +1,15 @@
 import sys
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QApplication
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QApplication, QVBoxLayout
 from PySide6.QtCore import Qt
 from qfluentwidgets import (NavigationItemPosition, MessageBox, setTheme, Theme, MSFluentWindow,
                             NavigationAvatarWidget, qrouter, SubtitleLabel, setFont, FluentIcon)
 from qfluentwidgets import FluentIcon as FIF
 
 # 内部调用
-from home_interface_frame import Ui_HomeInterface
+from home_frame import Ui_Home
+from download_list_frame import Ui_DownloadList
+from search_frame import Ui_Search
+
 """
 class Widget(QFrame):
 
@@ -23,69 +26,43 @@ class Widget(QFrame):
 """
 
 
+class HomeWidget(QFrame):
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.ui = Ui_Home()
+        self.ui.setupUi(self)
+
+class DownloadListWidget(QFrame):
+    def __init__(self, parent = None):
+        super().__init__(parent=parent)
+        self.ui = Ui_DownloadList()
+        self.ui.setupUi(self)
+
+class SearchWidget(QFrame):
+    def __init__(self, parent = None):
+        super().__init__(parent=parent)
+        self.ui = Ui_Search()
+        self.ui.setupUi(self)
+
 class Window(MSFluentWindow):
     def __init__(self):
         super().__init__()
-        self.home_interface = Ui_HomeInterface()
-        
-        self.home_interface.setupUi(self)
+        self.home_widget = HomeWidget(parent=self)
+        self.download_list_widget = DownloadListWidget(parent=self)
+        self.search_widget = SearchWidget(parent=self)
         self.initNavigation()
         self.initWindow()
 
     def initNavigation(self):
-        self.addSubInterface(self.home_interface, FIF.HOME, '主页', FIF.HOME_FILL)
+        self.addSubInterface(self.home_widget, FIF.HOME, '主页')
+        self.addSubInterface(self.search_widget, FIF.SEARCH, "搜索")
+        self.addSubInterface(self.download_list_widget, FIF.LIBRARY, "下载列表")
+        # self.addSubInterface()
 
     def initWindow(self):
         self.resize(900, 700)
-        self.setWindowTitle('PyQt-Fluent-Widgets')
-"""
-    def __init__(self):
-        super().__init__()
+        self.setWindowTitle('NeteaseDownloader')
 
-        # create sub interface
-        self.homeInterface = Widget('Home Interface', self)
-        self.appInterface = Widget('Application Interface', self)
-        self.videoInterface = Widget('Video Interface', self)
-        self.libraryInterface = Widget('library Interface', self)
-
-        self.initNavigation()
-        self.initWindow()
-
-    def initNavigation(self):
-        self.addSubInterface(self.homeInterface, FIF.HOME, '主页', FIF.HOME_FILL)
-        self.addSubInterface(self.appInterface, FIF.APPLICATION, '应用')
-        self.addSubInterface(self.videoInterface, FIF.VIDEO, '视频')
-
-        self.addSubInterface(self.libraryInterface, FIF.BOOK_SHELF, '库', FIF.LIBRARY_FILL, NavigationItemPosition.BOTTOM)
-
-        # 添加自定义导航组件
-        self.navigationInterface.addItem(
-            routeKey='Help',
-            icon=FIF.HELP,
-            text='帮助',
-            onClick=self.showMessageBox,
-            selectable=False,
-            position=NavigationItemPosition.BOTTOM,
-        )
-
-        self.navigationInterface.setCurrentItem(self.homeInterface.objectName())
-
-    def initWindow(self):
-        self.resize(900, 700)
-        self.setWindowTitle('PyQt-Fluent-Widgets')
-
-    def showMessageBox(self):
-        w = MessageBox(
-            '支持作者🥰',
-            '个人开发不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护项目的动力🚀',
-            self
-        )
-        w.yesButton.setText('来啦老弟')
-        w.cancelButton.setText('下次一定')
-
-        if w.exec(): 
-            pass
-"""
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

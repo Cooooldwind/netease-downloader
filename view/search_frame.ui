@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Search</class>
+ <widget class="QFrame" name="Search">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>667</width>
+    <height>621</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Frame</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="TitleLabel" name="TitleLabel">
+     <property name="text">
+      <string>搜索</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="SearchHorizontalLayout">
+     <item>
+      <widget class="ComboBox" name="SearchTypeComboBox"/>
+     </item>
+     <item>
+      <widget class="SearchLineEdit" name="SearchKeyLineEdit"/>
+     </item>
+     <item>
+      <widget class="PrimaryPushButton" name="SearchPushButton">
+       <property name="text">
+        <string>搜索</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="BodyLabel" name="SearchResultLabel">
+     <property name="text">
+      <string>请点击“搜索”。在点击“搜索”之后不久，底下的列表将会显示结果。</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="TableWidget" name="SearchResultTable"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="DownloadHorizontalLayout">
+     <item>
+      <widget class="PrimaryPushButton" name="DownloadPushButton">
+       <property name="text">
+        <string>直接下载</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="PushButton" name="AddDownloadListPushButton">
+       <property name="text">
+        <string>添加至下载列表</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TitleLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>SearchLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PushButton</class>
+   <extends>QPushButton</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>BodyLabel</class>
+   <extends>QLabel</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>TableWidget</class>
+   <extends>QTableWidget</extends>
+   <header location="global">qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PrimaryPushButton</class>
+   <extends>QPushButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
