@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QApplication, QVBoxLayout
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QApplication, QVBoxLayout, QTableWidgetItem, QHeaderView
 from PySide6.QtCore import Slot, Signal, Qt
 from qfluentwidgets import (
     NavigationItemPosition,
@@ -38,6 +38,10 @@ class Window(MSFluentWindow):
         # 信号
         self.search_widget.ui.SearchPushButton.clicked.connect(self.search)
 
+        # 初始化
+        self.search_widget.ui.SearchResultTable.setBorderVisible(True)
+        self.search_widget.ui.SearchResultTable.setBorderRadius(8)
+
     def search(self):
         key = self.search_widget.ui.SearchKeyLineEdit.text()
         self.search_controller.get(key, "playlist", "playlist")
@@ -49,6 +53,11 @@ class Window(MSFluentWindow):
             for i in range(result["cnt"]):
                 self.search_widget.ui.SearchResultTable.setRowHidden(i, True)
             self.search_widget.ui.SearchResultLabel.setText(f"搜索到 {result["playlist_title"]}，由 {result["playlist_creator"]} 创建，共 {result["cnt"]} 首歌曲。")
+        elif result["mode"] == "edit_table":
+            self.search_widget.ui.SearchResultTable.setItem(result["cnt"],0,QTableWidgetItem(result["title"]))
+            self.search_widget.ui.SearchResultTable.setItem(result["cnt"],1,QTableWidgetItem(result["artist"]))
+            self.search_widget.ui.SearchResultTable.setItem(result["cnt"],2,QTableWidgetItem(result["album"]))
+            self.search_widget.ui.SearchResultTable.setRowHidden(result["cnt"], False)
 
     def initNavigation(self):
         self.addSubInterface(self.home_widget, FIF.HOME, "主页")

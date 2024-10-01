@@ -24,7 +24,28 @@
    <item>
     <layout class="QHBoxLayout" name="SearchHorizontalLayout">
      <item>
-      <widget class="ComboBox" name="SearchTypeComboBox"/>
+      <widget class="ComboBox" name="SearchTypeComboBox">
+       <item>
+        <property name="text">
+         <string>歌曲链接/ID</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>歌单链接/ID</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>搜索歌曲</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>搜索歌单</string>
+        </property>
+       </item>
+      </widget>
      </item>
      <item>
       <widget class="SearchLineEdit" name="SearchKeyLineEdit"/>
@@ -46,7 +67,28 @@
     </widget>
    </item>
    <item>
-    <widget class="TableWidget" name="SearchResultTable"/>
+    <widget class="TableWidget" name="SearchResultTable">
+     <column>
+      <property name="text">
+       <string>标题</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>歌手</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>专辑</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>选中</string>
+      </property>
+     </column>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="DownloadHorizontalLayout">

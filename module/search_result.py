@@ -2,13 +2,13 @@ from class163 import Search, Playlist, Music
 from class163.common import artist_join
 from class163.global_args import SEARCH_TYPE
 from netease_encode_api import EncodeSession
-from PySide6.QtCore import Slot, Signal, QObject
+from PySide6.QtCore import Slot, Signal, QObject, QThread
 from typing import Dict, Union
 
 from module.global_args import SEARCH_MODE
 
 
-class SearchResult(QObject):
+class SearchResult(QThread):
     search_signal = Signal(dict)
 
     def __init__(self, parent: QObject | None = ...) -> None:
@@ -47,11 +47,11 @@ class SearchResult(QObject):
             self.instance.encode_session = self.encode_session
         return None
 
+    def run(self): self.get()
+
     def get(self):
         if self.type == "playlist":
-            
             self.instance.get_detail(each_music=False)
-            cnt = 0
             initialize_result = {
                 "mode": "initialize",
                 "cnt": self.instance.track_count,
@@ -59,6 +59,7 @@ class SearchResult(QObject):
                 "playlist_creator": self.instance.creator,
             }
             self.search_signal.emit(initialize_result)
+            cnt = 0
             for i in self.instance.track:
                 if i.cover_file_url == None:
                     i.get_detail(encode_session=self.encode_session)
@@ -75,3 +76,4 @@ class SearchResult(QObject):
                     "cover": i.cover_file.get_data(),
                 }
                 self.search_signal.emit(result_dict)
+                cnt += 1

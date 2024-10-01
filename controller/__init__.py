@@ -14,7 +14,7 @@ class SearchController(QObject):
     
     def get(self, key, mode, search_type = "song"):
         self.module.set_attribute(key, mode, search_type)
-        self.module.get()
+        self.module.start()
 
     def add(self, result: Dict):
         self.edit_signal.emit(result)
