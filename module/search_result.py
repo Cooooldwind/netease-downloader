@@ -5,7 +5,7 @@ from netease_encode_api import EncodeSession
 from PySide6.QtCore import Slot, Signal, QObject
 from typing import Dict, Union
 
-from global_args import SEARCH_MODE
+from module.global_args import SEARCH_MODE
 
 
 class SearchResult(QObject):
@@ -20,14 +20,20 @@ class SearchResult(QObject):
         self.encode_session: EncodeSession = None
 
     def set_attribute(
-        self, key: str, main_type: SEARCH_MODE, search_type: SEARCH_TYPE = "song", encode_session: EncodeSession = None
+        self,
+        key: str,
+        mode: SEARCH_MODE,
+        search_type: SEARCH_TYPE = "song",
+        encode_session: EncodeSession = EncodeSession(),
     ):
-        self.type = main_type
+        self.type = mode
         if self.type == "search_playlist" or self.type == "search_song":
             self.encode_session = encode_session
             self.key, self.type = key, search_type
             self.instance = Search(
-                key=self.key, search_type=self.search_type, encode_session=self.encode_session
+                key=self.key,
+                search_type=self.search_type,
+                encode_session=self.encode_session,
             )
         elif self.type == "playlist":
             self.encode_session = encode_session
@@ -40,23 +46,32 @@ class SearchResult(QObject):
             self.instance = Music(self.key)
             self.instance.encode_session = self.encode_session
         return None
-    
+
     def get(self):
         if self.type == "playlist":
-            self.instance.get_detail(each_music = False)
+            
+            self.instance.get_detail(each_music=False)
             cnt = 0
+            initialize_result = {
+                "mode": "initialize",
+                "cnt": self.instance.track_count,
+                "playlist_title": self.instance.title,
+                "playlist_creator": self.instance.creator,
+            }
+            self.search_signal.emit(initialize_result)
             for i in self.instance.track:
                 if i.cover_file_url == None:
                     i.get_detail(encode_session=self.encode_session)
                 i.set_cover_size(48)
                 i.cover_file.begin_download()
                 result_dict = {
+                    "mode": "edit_table",
                     "playlist_title": self.instance.title,
                     "playlist_creator": self.instance.creator,
                     "title": i.title,
                     "cnt": cnt,
                     "artist": artist_join(i.artist, "/"),
                     "album": i.album,
-                    "cover": i.cover_file.get_data()
+                    "cover": i.cover_file.get_data(),
                 }
-                self.search_signal.emit()
+                self.search_signal.emit(result_dict)

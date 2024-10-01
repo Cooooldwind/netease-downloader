@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QApplication, QVBoxLayout
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Slot, Signal, Qt
 from qfluentwidgets import (
     NavigationItemPosition,
     MessageBox,
@@ -14,13 +14,15 @@ from qfluentwidgets import (
     FluentIcon,
 )
 from qfluentwidgets import FluentIcon as FIF
+from typing import Dict
 
 # 内部调用
-from frame_widget import HomeWidget, DownloadListWidget, SearchWidget
+from view.frame_widget import HomeWidget, DownloadListWidget, SearchWidget
 from controller import SearchController
 
 
 class Window(MSFluentWindow):
+
     def __init__(self):
         super().__init__()
         # 创建控制器
@@ -33,6 +35,20 @@ class Window(MSFluentWindow):
         self.initNavigation()
         self.initWindow()
 
+        # 信号
+        self.search_widget.ui.SearchPushButton.clicked.connect(self.search)
+
+    def search(self):
+        key = self.search_widget.ui.SearchKeyLineEdit.text()
+        self.search_controller.get(key, "playlist", "playlist")
+        self.search_controller.edit_signal.connect(self.edit_search_result)
+
+    def edit_search_result(self, result: Dict):
+        if result["mode"] == "initialize":
+            self.search_widget.ui.SearchResultTable.setRowCount(result["cnt"])
+            for i in range(result["cnt"]):
+                self.search_widget.ui.SearchResultTable.setRowHidden(i, True)
+            self.search_widget.ui.SearchResultLabel.setText(f"搜索到 {result["playlist_title"]}，由 {result["playlist_creator"]} 创建，共 {result["cnt"]} 首歌曲。")
 
     def initNavigation(self):
         self.addSubInterface(self.home_widget, FIF.HOME, "主页")
@@ -45,8 +61,3 @@ class Window(MSFluentWindow):
         self.setWindowTitle("NeteaseDownloader")
 
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    w = Window()
-    w.show()
-    app.exec()

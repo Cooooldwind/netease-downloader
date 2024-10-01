@@ -1,9 +1,9 @@
 from PySide6.QtWidgets import QFrame
 from PySide6.QtCore import QObject
 
-from home_frame import Ui_Home
-from download_list_frame import Ui_DownloadList
-from search_frame import Ui_Search
+from view.home_frame import Ui_Home
+from view.download_list_frame import Ui_DownloadList
+from view.search_frame import Ui_Search
 
 
 class HomeWidget(QFrame):
