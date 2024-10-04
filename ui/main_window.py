@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'form.ui'
+## Form generated from reading UI file 'main_window.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -28,36 +28,22 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1200, 800)
+        MainWindow.resize(854, 480)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMaximumSize(QSize(1200, 800))
+        MainWindow.setMinimumSize(QSize(854, 480))
+        MainWindow.setMaximumSize(QSize(16777215, 16777215))
         self.centralWidget = QWidget(MainWindow)
         self.centralWidget.setObjectName(u"centralWidget")
         sizePolicy.setHeightForWidth(self.centralWidget.sizePolicy().hasHeightForWidth())
         self.centralWidget.setSizePolicy(sizePolicy)
-        self.centralWidget.setMinimumSize(QSize(1200, 800))
+        self.centralWidget.setMinimumSize(QSize(854, 480))
         self.centralWidget.setMaximumSize(QSize(16777215, 16777215))
-        self.mainFrame = QFrame(self.centralWidget)
-        self.mainFrame.setObjectName(u"mainFrame")
-        self.mainFrame.setGeometry(QRect(0, 0, 1200, 800))
-        sizePolicy.setHeightForWidth(self.mainFrame.sizePolicy().hasHeightForWidth())
-        self.mainFrame.setSizePolicy(sizePolicy)
-        self.mainFrame.setMinimumSize(QSize(1200, 800))
-        self.mainFrame.setMaximumSize(QSize(16777215, 16777215))
-        self.mainFrame.setFrameShape(QFrame.Shape.StyledPanel)
-        self.mainFrame.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayoutWidget = QWidget(self.mainFrame)
-        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 1201, 801))
-        self.mainHorizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
-        self.mainHorizontalLayout.setSpacing(5)
-        self.mainHorizontalLayout.setObjectName(u"mainHorizontalLayout")
-        self.mainHorizontalLayout.setSizeConstraint(QLayout.SizeConstraint.SetNoConstraint)
-        self.mainHorizontalLayout.setContentsMargins(10, 10, 10, 10)
+        self.horizontalLayout = QHBoxLayout(self.centralWidget)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.leftVerticalLayout = QVBoxLayout()
         self.leftVerticalLayout.setSpacing(5)
         self.leftVerticalLayout.setObjectName(u"leftVerticalLayout")
@@ -67,7 +53,7 @@ class Ui_MainWindow(object):
         self.searchLayout.setSpacing(5)
         self.searchLayout.setObjectName(u"searchLayout")
         self.searchLayout.setContentsMargins(0, 0, 0, 0)
-        self.searchComboBox = ComboBox(self.horizontalLayoutWidget)
+        self.searchComboBox = ComboBox(self.centralWidget)
         self.searchComboBox.addItem("")
         self.searchComboBox.addItem("")
         self.searchComboBox.addItem("")
@@ -81,7 +67,7 @@ class Ui_MainWindow(object):
 
         self.searchLayout.addWidget(self.searchComboBox)
 
-        self.searchLineEdit = LineEdit(self.horizontalLayoutWidget)
+        self.searchLineEdit = LineEdit(self.centralWidget)
         self.searchLineEdit.setObjectName(u"searchLineEdit")
         sizePolicy1.setHeightForWidth(self.searchLineEdit.sizePolicy().hasHeightForWidth())
         self.searchLineEdit.setSizePolicy(sizePolicy1)
@@ -89,7 +75,7 @@ class Ui_MainWindow(object):
 
         self.searchLayout.addWidget(self.searchLineEdit)
 
-        self.searchButton = PrimaryPushButton(self.horizontalLayoutWidget)
+        self.searchButton = PrimaryPushButton(self.centralWidget)
         self.searchButton.setObjectName(u"searchButton")
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
@@ -102,7 +88,7 @@ class Ui_MainWindow(object):
 
         self.leftVerticalLayout.addLayout(self.searchLayout)
 
-        self.resultTableWidget = TableWidget(self.horizontalLayoutWidget)
+        self.resultTableWidget = TableWidget(self.centralWidget)
         if (self.resultTableWidget.columnCount() < 3):
             self.resultTableWidget.setColumnCount(3)
         __qtablewidgetitem = QTableWidgetItem()
@@ -135,23 +121,23 @@ class Ui_MainWindow(object):
         self.selectionLayout.setSpacing(5)
         self.selectionLayout.setObjectName(u"selectionLayout")
         self.selectionLayout.setContentsMargins(0, 0, 0, 0)
-        self.selectionLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.selectionLabel = StrongBodyLabel(self.centralWidget)
         self.selectionLabel.setObjectName(u"selectionLabel")
 
         self.selectionLayout.addWidget(self.selectionLabel)
 
-        self.selectionLineEdit = LineEdit(self.horizontalLayoutWidget)
+        self.selectionLineEdit = LineEdit(self.centralWidget)
         self.selectionLineEdit.setObjectName(u"selectionLineEdit")
         self.selectionLineEdit.setMinimumSize(QSize(0, 0))
 
         self.selectionLayout.addWidget(self.selectionLineEdit)
 
-        self.selectAllButton = PushButton(self.horizontalLayoutWidget)
+        self.selectAllButton = PushButton(self.centralWidget)
         self.selectAllButton.setObjectName(u"selectAllButton")
 
         self.selectionLayout.addWidget(self.selectAllButton)
 
-        self.addToDownloadListButton = PrimaryPushButton(self.horizontalLayoutWidget)
+        self.addToDownloadListButton = PrimaryPushButton(self.centralWidget)
         self.addToDownloadListButton.setObjectName(u"addToDownloadListButton")
 
         self.selectionLayout.addWidget(self.addToDownloadListButton)
@@ -159,14 +145,19 @@ class Ui_MainWindow(object):
 
         self.leftVerticalLayout.addLayout(self.selectionLayout)
 
-        self.infoLabel = BodyLabel(self.horizontalLayoutWidget)
+        self.infoLabel = BodyLabel(self.centralWidget)
         self.infoLabel.setObjectName(u"infoLabel")
 
         self.leftVerticalLayout.addWidget(self.infoLabel)
 
 
-        self.mainHorizontalLayout.addLayout(self.leftVerticalLayout)
+        self.horizontalLayout.addLayout(self.leftVerticalLayout)
 
+        self.mainHorizontalLayout = QHBoxLayout()
+        self.mainHorizontalLayout.setSpacing(5)
+        self.mainHorizontalLayout.setObjectName(u"mainHorizontalLayout")
+        self.mainHorizontalLayout.setSizeConstraint(QLayout.SizeConstraint.SetNoConstraint)
+        self.mainHorizontalLayout.setContentsMargins(10, 10, 10, 10)
         self.rightVerticalLayout = QVBoxLayout()
         self.rightVerticalLayout.setSpacing(5)
         self.rightVerticalLayout.setObjectName(u"rightVerticalLayout")
@@ -176,24 +167,24 @@ class Ui_MainWindow(object):
         self.loginLayout.setSpacing(5)
         self.loginLayout.setObjectName(u"loginLayout")
         self.loginLayout.setContentsMargins(0, 0, 0, 0)
-        self.loginLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.loginLabel = StrongBodyLabel(self.centralWidget)
         self.loginLabel.setObjectName(u"loginLabel")
 
         self.loginLayout.addWidget(self.loginLabel)
 
-        self.loginLineEdit = PasswordLineEdit(self.horizontalLayoutWidget)
+        self.loginLineEdit = PasswordLineEdit(self.centralWidget)
         self.loginLineEdit.setObjectName(u"loginLineEdit")
         self.loginLineEdit.setMaxLength(800)
         self.loginLineEdit.setClearButtonEnabled(False)
 
         self.loginLayout.addWidget(self.loginLineEdit)
 
-        self.loginButton = PrimaryPushButton(self.horizontalLayoutWidget)
+        self.loginButton = PrimaryPushButton(self.centralWidget)
         self.loginButton.setObjectName(u"loginButton")
 
         self.loginLayout.addWidget(self.loginButton)
 
-        self.browserLoginButton = PushButton(self.horizontalLayoutWidget)
+        self.browserLoginButton = PushButton(self.centralWidget)
         self.browserLoginButton.setObjectName(u"browserLoginButton")
 
         self.loginLayout.addWidget(self.browserLoginButton)
@@ -204,7 +195,7 @@ class Ui_MainWindow(object):
         self.downloadListTitleLayout = QVBoxLayout()
         self.downloadListTitleLayout.setObjectName(u"downloadListTitleLayout")
         self.downloadListTitleLayout.setContentsMargins(0, 0, 0, 0)
-        self.downloadListLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.downloadListLabel = StrongBodyLabel(self.centralWidget)
         self.downloadListLabel.setObjectName(u"downloadListLabel")
 
         self.downloadListTitleLayout.addWidget(self.downloadListLabel)
@@ -212,7 +203,7 @@ class Ui_MainWindow(object):
 
         self.rightVerticalLayout.addLayout(self.downloadListTitleLayout)
 
-        self.downloadListTableWidget = TableWidget(self.horizontalLayoutWidget)
+        self.downloadListTableWidget = TableWidget(self.centralWidget)
         self.downloadListTableWidget.setObjectName(u"downloadListTableWidget")
 
         self.rightVerticalLayout.addWidget(self.downloadListTableWidget)
@@ -224,27 +215,27 @@ class Ui_MainWindow(object):
         self.qualityLayout.setSpacing(5)
         self.qualityLayout.setObjectName(u"qualityLayout")
         self.qualityLayout.setContentsMargins(5, 5, 5, 5)
-        self.qualityLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.qualityLabel = StrongBodyLabel(self.centralWidget)
         self.qualityLabel.setObjectName(u"qualityLabel")
 
         self.qualityLayout.addWidget(self.qualityLabel)
 
-        self.standardRadioButton = RadioButton(self.horizontalLayoutWidget)
+        self.standardRadioButton = RadioButton(self.centralWidget)
         self.standardRadioButton.setObjectName(u"standardRadioButton")
 
         self.qualityLayout.addWidget(self.standardRadioButton)
 
-        self.higherRadioButton = RadioButton(self.horizontalLayoutWidget)
+        self.higherRadioButton = RadioButton(self.centralWidget)
         self.higherRadioButton.setObjectName(u"higherRadioButton")
 
         self.qualityLayout.addWidget(self.higherRadioButton)
 
-        self.exhighRadioButton = RadioButton(self.horizontalLayoutWidget)
+        self.exhighRadioButton = RadioButton(self.centralWidget)
         self.exhighRadioButton.setObjectName(u"exhighRadioButton")
 
         self.qualityLayout.addWidget(self.exhighRadioButton)
 
-        self.losslessRadioButton = RadioButton(self.horizontalLayoutWidget)
+        self.losslessRadioButton = RadioButton(self.centralWidget)
         self.losslessRadioButton.setObjectName(u"losslessRadioButton")
 
         self.qualityLayout.addWidget(self.losslessRadioButton)
@@ -256,27 +247,27 @@ class Ui_MainWindow(object):
         self.filePropertiesLayout.setSpacing(5)
         self.filePropertiesLayout.setObjectName(u"filePropertiesLayout")
         self.filePropertiesLayout.setContentsMargins(5, 5, 5, 5)
-        self.filePropertiesLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.filePropertiesLabel = StrongBodyLabel(self.centralWidget)
         self.filePropertiesLabel.setObjectName(u"filePropertiesLabel")
 
         self.filePropertiesLayout.addWidget(self.filePropertiesLabel)
 
-        self.basicInfoCheckBox = CheckBox(self.horizontalLayoutWidget)
+        self.basicInfoCheckBox = CheckBox(self.centralWidget)
         self.basicInfoCheckBox.setObjectName(u"basicInfoCheckBox")
 
         self.filePropertiesLayout.addWidget(self.basicInfoCheckBox)
 
-        self.albumCoverCheckBox = CheckBox(self.horizontalLayoutWidget)
+        self.albumCoverCheckBox = CheckBox(self.centralWidget)
         self.albumCoverCheckBox.setObjectName(u"albumCoverCheckBox")
 
         self.filePropertiesLayout.addWidget(self.albumCoverCheckBox)
 
-        self.lyricsDownloadCheckBox = CheckBox(self.horizontalLayoutWidget)
+        self.lyricsDownloadCheckBox = CheckBox(self.centralWidget)
         self.lyricsDownloadCheckBox.setObjectName(u"lyricsDownloadCheckBox")
 
         self.filePropertiesLayout.addWidget(self.lyricsDownloadCheckBox)
 
-        self.lyricsAddCheckBox = CheckBox(self.horizontalLayoutWidget)
+        self.lyricsAddCheckBox = CheckBox(self.centralWidget)
         self.lyricsAddCheckBox.setObjectName(u"lyricsAddCheckBox")
 
         self.filePropertiesLayout.addWidget(self.lyricsAddCheckBox)
@@ -288,12 +279,12 @@ class Ui_MainWindow(object):
         self.lyricsEncodingLayout.setSpacing(5)
         self.lyricsEncodingLayout.setObjectName(u"lyricsEncodingLayout")
         self.lyricsEncodingLayout.setContentsMargins(5, 5, 5, 5)
-        self.lyricsEncodingLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.lyricsEncodingLabel = StrongBodyLabel(self.centralWidget)
         self.lyricsEncodingLabel.setObjectName(u"lyricsEncodingLabel")
 
         self.lyricsEncodingLayout.addWidget(self.lyricsEncodingLabel)
 
-        self.lyricsEncodingComboBox = ComboBox(self.horizontalLayoutWidget)
+        self.lyricsEncodingComboBox = ComboBox(self.centralWidget)
         self.lyricsEncodingComboBox.addItem("")
         self.lyricsEncodingComboBox.addItem("")
         self.lyricsEncodingComboBox.addItem("")
@@ -301,12 +292,12 @@ class Ui_MainWindow(object):
 
         self.lyricsEncodingLayout.addWidget(self.lyricsEncodingComboBox)
 
-        self.albumCoverSizeLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.albumCoverSizeLabel = StrongBodyLabel(self.centralWidget)
         self.albumCoverSizeLabel.setObjectName(u"albumCoverSizeLabel")
 
         self.lyricsEncodingLayout.addWidget(self.albumCoverSizeLabel)
 
-        self.albumCoverSizeSpinBox = SpinBox(self.horizontalLayoutWidget)
+        self.albumCoverSizeSpinBox = SpinBox(self.centralWidget)
         self.albumCoverSizeSpinBox.setObjectName(u"albumCoverSizeSpinBox")
         self.albumCoverSizeSpinBox.setMinimum(100)
         self.albumCoverSizeSpinBox.setMaximum(2000)
@@ -321,28 +312,28 @@ class Ui_MainWindow(object):
         self.fileSavingLayout = QHBoxLayout()
         self.fileSavingLayout.setObjectName(u"fileSavingLayout")
         self.fileSavingLayout.setContentsMargins(-1, -1, -1, 0)
-        self.fileSaveLocationLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.fileSaveLocationLabel = StrongBodyLabel(self.centralWidget)
         self.fileSaveLocationLabel.setObjectName(u"fileSaveLocationLabel")
 
         self.fileSavingLayout.addWidget(self.fileSaveLocationLabel)
 
-        self.fileSaveLocationLineEdit = LineEdit(self.horizontalLayoutWidget)
+        self.fileSaveLocationLineEdit = LineEdit(self.centralWidget)
         self.fileSaveLocationLineEdit.setObjectName(u"fileSaveLocationLineEdit")
         self.fileSaveLocationLineEdit.setMaxLength(200)
 
         self.fileSavingLayout.addWidget(self.fileSaveLocationLineEdit)
 
-        self.fileSaveLocationToolButton = ToolButton(self.horizontalLayoutWidget)
+        self.fileSaveLocationToolButton = ToolButton(self.centralWidget)
         self.fileSaveLocationToolButton.setObjectName(u"fileSaveLocationToolButton")
 
         self.fileSavingLayout.addWidget(self.fileSaveLocationToolButton)
 
-        self.filenameFormatLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.filenameFormatLabel = StrongBodyLabel(self.centralWidget)
         self.filenameFormatLabel.setObjectName(u"filenameFormatLabel")
 
         self.fileSavingLayout.addWidget(self.filenameFormatLabel)
 
-        self.filenameFormatLineEdit = LineEdit(self.horizontalLayoutWidget)
+        self.filenameFormatLineEdit = LineEdit(self.centralWidget)
         self.filenameFormatLineEdit.setObjectName(u"filenameFormatLineEdit")
 
         self.fileSavingLayout.addWidget(self.filenameFormatLineEdit)
@@ -361,7 +352,7 @@ class Ui_MainWindow(object):
         self.downloadListProgressLayout.setContentsMargins(0, 0, 0, 0)
         self.downloadListProgressInnerLayout = QHBoxLayout()
         self.downloadListProgressInnerLayout.setObjectName(u"downloadListProgressInnerLayout")
-        self.downloadListProgressLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.downloadListProgressLabel = StrongBodyLabel(self.centralWidget)
         self.downloadListProgressLabel.setObjectName(u"downloadListProgressLabel")
         sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy3.setHorizontalStretch(0)
@@ -371,7 +362,7 @@ class Ui_MainWindow(object):
 
         self.downloadListProgressInnerLayout.addWidget(self.downloadListProgressLabel)
 
-        self.downloadListProgressBar = ProgressBar(self.horizontalLayoutWidget)
+        self.downloadListProgressBar = ProgressBar(self.centralWidget)
         self.downloadListProgressBar.setObjectName(u"downloadListProgressBar")
         sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
@@ -388,14 +379,14 @@ class Ui_MainWindow(object):
         self.currentSongProgressLayout = QHBoxLayout()
         self.currentSongProgressLayout.setObjectName(u"currentSongProgressLayout")
         self.currentSongProgressLayout.setContentsMargins(0, 0, 0, 0)
-        self.currentSongProgressLabel = StrongBodyLabel(self.horizontalLayoutWidget)
+        self.currentSongProgressLabel = StrongBodyLabel(self.centralWidget)
         self.currentSongProgressLabel.setObjectName(u"currentSongProgressLabel")
         sizePolicy3.setHeightForWidth(self.currentSongProgressLabel.sizePolicy().hasHeightForWidth())
         self.currentSongProgressLabel.setSizePolicy(sizePolicy3)
 
         self.currentSongProgressLayout.addWidget(self.currentSongProgressLabel)
 
-        self.currentSongProgressBar = ProgressBar(self.horizontalLayoutWidget)
+        self.currentSongProgressBar = ProgressBar(self.centralWidget)
         self.currentSongProgressBar.setObjectName(u"currentSongProgressBar")
         sizePolicy4.setHeightForWidth(self.currentSongProgressBar.sizePolicy().hasHeightForWidth())
         self.currentSongProgressBar.setSizePolicy(sizePolicy4)
@@ -409,7 +400,7 @@ class Ui_MainWindow(object):
 
         self.downloadingLayout.addLayout(self.downloadListProgressLayout)
 
-        self.startDownloadButton = PrimaryPushButton(self.horizontalLayoutWidget)
+        self.startDownloadButton = PrimaryPushButton(self.centralWidget)
         self.startDownloadButton.setObjectName(u"startDownloadButton")
         sizePolicy3.setHeightForWidth(self.startDownloadButton.sizePolicy().hasHeightForWidth())
         self.startDownloadButton.setSizePolicy(sizePolicy3)
@@ -422,8 +413,10 @@ class Ui_MainWindow(object):
 
         self.mainHorizontalLayout.addLayout(self.rightVerticalLayout)
 
-        self.mainHorizontalLayout.setStretch(0, 2)
-        self.mainHorizontalLayout.setStretch(1, 3)
+        self.mainHorizontalLayout.setStretch(0, 3)
+
+        self.horizontalLayout.addLayout(self.mainHorizontalLayout)
+
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(MainWindow)
