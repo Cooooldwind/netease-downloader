@@ -17,7 +17,7 @@ from qfluentwidgets import FluentIcon as FIF
 from typing import Dict
 
 # 内部调用
-from view.frame_widget import HomeWidget, DownloadListWidget, SearchWidget
+from view.frame_widget import HomeWidget, DownloadListWidget, SearchWidget, MusicCardWidget
 from controller import SearchController
 
 
@@ -50,14 +50,26 @@ class Window(MSFluentWindow):
     def edit_search_result(self, result: Dict):
         if result["mode"] == "initialize":
             self.search_widget.ui.SearchResultTable.setRowCount(result["cnt"])
+            self.search_widget.ui.SearchResultTable.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
             for i in range(result["cnt"]):
                 self.search_widget.ui.SearchResultTable.setRowHidden(i, True)
+                self.search_widget.ui.SearchResultTable.setRowHeight(i, 60)
             self.search_widget.ui.SearchResultLabel.setText(f"搜索到 {result["playlist_title"]}，由 {result["playlist_creator"]} 创建，共 {result["cnt"]} 首歌曲。")
         elif result["mode"] == "edit_table":
+            widget_tmp = MusicCardWidget(
+                coverbytes=result["cover"],
+                title=result["title"],
+                artist_str=result["artist"],
+                parent=self.search_widget.ui.SearchResultTable
+            )
+            self.search_widget.ui.SearchResultTable.setCellWidget(result["cnt"],0,widget_tmp)
+            self.search_widget.ui.SearchResultTable.setRowHidden(result["cnt"], False)
+            """
             self.search_widget.ui.SearchResultTable.setItem(result["cnt"],0,QTableWidgetItem(result["title"]))
             self.search_widget.ui.SearchResultTable.setItem(result["cnt"],1,QTableWidgetItem(result["artist"]))
             self.search_widget.ui.SearchResultTable.setItem(result["cnt"],2,QTableWidgetItem(result["album"]))
-            self.search_widget.ui.SearchResultTable.setRowHidden(result["cnt"], False)
+            
+            """
 
     def initNavigation(self):
         self.addSubInterface(self.home_widget, FIF.HOME, "主页")
