@@ -19,8 +19,8 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QHeaderView,
     QSizePolicy, QSpacerItem, QTableWidgetItem, QVBoxLayout,
     QWidget)
 
-from qfluentwidgets import (BodyLabel, ComboBox, PrimaryPushButton, PushButton,
-    SearchLineEdit, TableWidget, TitleLabel)
+from qfluentwidgets import (BodyLabel, ComboBox, PrimaryPushButton, ProgressBar,
+    PushButton, SearchLineEdit, TableWidget, TitleLabel)
 
 class Ui_Search(object):
     def setupUi(self, Search):
@@ -50,11 +50,6 @@ class Ui_Search(object):
 
         self.SearchHorizontalLayout.addWidget(self.SearchKeyLineEdit)
 
-        self.SearchPushButton = PrimaryPushButton(Search)
-        self.SearchPushButton.setObjectName(u"SearchPushButton")
-
-        self.SearchHorizontalLayout.addWidget(self.SearchPushButton)
-
 
         self.verticalLayout.addLayout(self.SearchHorizontalLayout)
 
@@ -62,6 +57,12 @@ class Ui_Search(object):
         self.SearchResultLabel.setObjectName(u"SearchResultLabel")
 
         self.verticalLayout.addWidget(self.SearchResultLabel)
+
+        self.ProgressBar = ProgressBar(Search)
+        self.ProgressBar.setObjectName(u"ProgressBar")
+        self.ProgressBar.setValue(24)
+
+        self.verticalLayout.addWidget(self.ProgressBar)
 
         self.SearchResultTable = TableWidget(Search)
         if (self.SearchResultTable.columnCount() < 1):
@@ -107,7 +108,6 @@ class Ui_Search(object):
         self.SearchTypeComboBox.setItemText(2, QCoreApplication.translate("Search", u"\u641c\u7d22\u6b4c\u66f2", None))
         self.SearchTypeComboBox.setItemText(3, QCoreApplication.translate("Search", u"\u641c\u7d22\u6b4c\u5355", None))
 
-        self.SearchPushButton.setText(QCoreApplication.translate("Search", u"\u641c\u7d22", None))
         self.SearchResultLabel.setText(QCoreApplication.translate("Search", u"\u8bf7\u70b9\u51fb\u201c\u641c\u7d22\u201d\u3002\u5728\u70b9\u51fb\u201c\u641c\u7d22\u201d\u4e4b\u540e\u4e0d\u4e45\uff0c\u5e95\u4e0b\u7684\u5217\u8868\u5c06\u4f1a\u663e\u793a\u7ed3\u679c\u3002", None))
         ___qtablewidgetitem = self.SearchResultTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Search", u"\u65b0\u5efa\u5217", None));

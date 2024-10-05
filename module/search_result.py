@@ -63,7 +63,7 @@ class SearchResult(QThread):
             for i in self.instance.track:
                 if i.cover_file_url == None:
                     i.get_detail(encode_session=self.encode_session)
-                i.set_cover_size(48)
+                i.set_cover_size(64)
                 i.cover_file.begin_download()
                 result_dict = {
                     "mode": "edit_table",
@@ -73,7 +73,10 @@ class SearchResult(QThread):
                     "cnt": cnt,
                     "artist": artist_join(i.artist, "/"),
                     "album": i.album,
+                    "sub_title": i.subtitle if i.subtitle != None else "",
+                    "trans_title": i.trans_title if i.trans_title != None else "",
                     "cover": i.cover_file.get_data(),
+                    "tot_cnt": self.instance.track_count,
                 }
                 self.search_signal.emit(result_dict)
                 cnt += 1

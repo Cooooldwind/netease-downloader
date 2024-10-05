@@ -50,19 +50,19 @@
      <item>
       <widget class="SearchLineEdit" name="SearchKeyLineEdit"/>
      </item>
-     <item>
-      <widget class="PrimaryPushButton" name="SearchPushButton">
-       <property name="text">
-        <string>搜索</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
     <widget class="BodyLabel" name="SearchResultLabel">
      <property name="text">
       <string>请点击“搜索”。在点击“搜索”之后不久，底下的列表将会显示结果。</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="ProgressBar" name="ProgressBar">
+     <property name="value">
+      <number>24</number>
      </property>
     </widget>
    </item>
@@ -116,12 +116,12 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TitleLabel</class>
+   <class>BodyLabel</class>
    <extends>QLabel</extends>
    <header>qfluentwidgets</header>
   </customwidget>
   <customwidget>
-   <class>BodyLabel</class>
+   <class>TitleLabel</class>
    <extends>QLabel</extends>
    <header>qfluentwidgets</header>
   </customwidget>
@@ -148,6 +148,11 @@
   <customwidget>
    <class>PrimaryPushButton</class>
    <extends>QPushButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>ProgressBar</class>
+   <extends>QProgressBar</extends>
    <header>qfluentwidgets</header>
   </customwidget>
  </customwidgets>
