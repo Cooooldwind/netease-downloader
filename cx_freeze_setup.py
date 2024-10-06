@@ -11,6 +11,7 @@ exe = Executable(
         "Win32GUI" if sys.platform == "win32" else None
     ),  # 根据平台决定是否需要隐藏控制台
     target_name="NeteaseDownloader",  # 生成的可执行文件名称
+    icon="resources/icon.ico"
 )
 
 # 打包的参数配置
