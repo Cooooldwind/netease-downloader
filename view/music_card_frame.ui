@@ -21,6 +21,13 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
+    <widget class="StrongBodyLabel" name="Index">
+     <property name="text">
+      <string>Index</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="ImageLabel" name="CoverLabel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">

@@ -29,6 +29,11 @@ class Ui_MusicCardFrame(object):
         MusicCardFrame.setMaximumSize(QSize(16777215, 80))
         self.horizontalLayout = QHBoxLayout(MusicCardFrame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.Index = StrongBodyLabel(MusicCardFrame)
+        self.Index.setObjectName(u"Index")
+
+        self.horizontalLayout.addWidget(self.Index)
+
         self.CoverLabel = ImageLabel(MusicCardFrame)
         self.CoverLabel.setObjectName(u"CoverLabel")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
@@ -124,6 +129,7 @@ class Ui_MusicCardFrame(object):
 
     def retranslateUi(self, MusicCardFrame):
         MusicCardFrame.setWindowTitle(QCoreApplication.translate("MusicCardFrame", u"Frame", None))
+        self.Index.setText(QCoreApplication.translate("MusicCardFrame", u"Index", None))
         self.CoverLabel.setText(QCoreApplication.translate("MusicCardFrame", u"Cover", None))
         self.Title.setText(QCoreApplication.translate("MusicCardFrame", u"Title", None))
         self.TransTitle.setText(QCoreApplication.translate("MusicCardFrame", u"TransTitle", None))

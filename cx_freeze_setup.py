@@ -19,6 +19,7 @@ options = {
         "build_exe": "NeteaseDownloader",
         "packages": [],  # 需要打包的额外Python包列表
         "excludes": [],  # 不需要打包的Python包列表
+        "include_files": ["resources/"],
         # "include_files": ["data/config.json", "downloads/"],  # 需要包含的文件或文件夹
         "include_msvcr": True,  # 是否包含Microsoft Visual C++运行时库
         "optimize": 2,  # 启用Python优化（可选）
@@ -28,7 +29,7 @@ options = {
 # 打包配置
 setup(
     name="NeteaseDownloader",
-    version="0.0.1",
+    version="0.1.0",
     description="A music & playlist downloader for Netease Cloud Music",
     options=options,
     executables=[exe],
