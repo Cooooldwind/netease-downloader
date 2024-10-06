@@ -64,7 +64,11 @@ class SearchResult(QThread):
                 if i.cover_file_url == None:
                     i.get_detail(encode_session=self.encode_session)
                 i.set_cover_size(64)
-                i.cover_file.begin_download()
+                no_cover = False
+                try: i.cover_file.begin_download()
+                except: 
+                    no_cover = True
+                    pass
                 result_dict = {
                     "mode": "edit_table",
                     "playlist_title": self.instance.title,
@@ -80,3 +84,10 @@ class SearchResult(QThread):
                 }
                 self.search_signal.emit(result_dict)
                 cnt += 1
+            ending_result = {
+                "mode": "ending",
+                "cnt": self.instance.track_count,
+                "playlist_title": self.instance.title,
+                "playlist_creator": self.instance.creator,
+            }
+            self.search_signal.emit(ending_result)

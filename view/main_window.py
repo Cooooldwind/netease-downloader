@@ -40,6 +40,7 @@ class Window(MSFluentWindow):
         self.search_widget.ui.SearchResultTable.setBorderVisible(True)
         self.search_widget.ui.SearchResultTable.setBorderRadius(8)
         self.search_widget.ui.ProgressBar.setValue(0)
+        self.search_widget.ui.ProgressBar.setHidden(True)
 
     def search_mode_change(self):
         tmp = self.search_widget.ui.SearchTypeComboBox.currentIndex() 
@@ -55,7 +56,7 @@ class Window(MSFluentWindow):
     def search(self):
         key = self.search_widget.ui.SearchKeyLineEdit.text()
         self.search_controller.edit_signal.connect(self.edit_search_result)
-        self.search_controller.get(key, "playlist", "playlist")
+        self.search_controller.get(key, self.config.search_mode, "playlist")
         self.search_widget.ui.SearchResultLabel.setText("正在搜索......")
 
     def edit_search_result(self, result: Dict):
@@ -79,8 +80,12 @@ class Window(MSFluentWindow):
             )
             self.search_widget.ui.SearchResultTable.setCellWidget(result["cnt"],0,widget_tmp)
             self.search_widget.ui.SearchResultTable.setRowHidden(result["cnt"], False)
+            self.search_widget.ui.ProgressBar.setHidden(False)
             self.search_widget.ui.ProgressBar.setValue(result["cnt"])
             self.search_widget.ui.SearchResultLabel.setText(f"搜索到 {result["playlist_title"]}，由 {result["playlist_creator"]} 创建，共 {result["tot_cnt"]} 首歌曲。已加载 {result["cnt"]}/{result["tot_cnt"]} 首。")
+        elif result["mode"] == "ending":
+            self.search_widget.ui.SearchResultLabel.setText(f"搜索到 {result["playlist_title"]}，由 {result["playlist_creator"]} 创建，共 {result["cnt"]} 首歌曲。全部加载完成。")
+            self.search_widget.ui.ProgressBar.setHidden(True)
 
     def initNavigation(self):
         self.addSubInterface(self.home_widget, FIF.HOME, "主页")
