@@ -121,12 +121,13 @@ class SearchModel(QThread):
     def run(self):
         # 判断不同类型运行实例
         if self.search_mode == "search_playlist" or self.search_mode == "search_song":
-            self.instance.get()
+            if self.instance.get() == None:
+                return
             self.result_list = self.instance.search_result_sorted
         elif self.search_mode == "playlist":
             self.instance.get_detail(each_music=False)
             self.result_list = self.instance.track
-        else:
+        elif self.search_mode == "song":
             self.instance.get_detail()
             self.result_list = [self.instance]
         # 返回初始化信号

@@ -30,5 +30,3 @@ class Application(QObject):
         self.application_model.start_search_instance(key=key, search_mode=current_mode)
         self.application_model.search_model.result_signal.connect(self.mainwindow_view.search_widget.edit_result_ui)
         self.mainwindow_view.search_widget.ui.SearchResultLabel.setText("正在搜索...")
-
-                
