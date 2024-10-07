@@ -12,6 +12,9 @@ from class163.global_args import SEARCH_TYPE
 # typing
 from typing import Dict, List, Union
 
+# other
+import time
+
 # internal
 from model.global_args import SEARCH_MODE
 
@@ -69,6 +72,8 @@ class SearchModel(QThread):
         self.smsm_list: list[SingleMusicSearchModel] = []
         # 互斥锁
         self.mutex = QMutex()
+        self.active_threads = 0
+        self.max_threads = 4
 
     def initialize_and_ending_dict(self, initialize: bool = True):
         if initialize:
@@ -134,10 +139,18 @@ class SearchModel(QThread):
                 smsm = SingleMusicSearchModel(i, self.encode_session)
                 smsm.result_signal.connect(self.edit_music)
                 self.smsm_list.append(smsm)
-            for i in self.smsm_list:
-                i.start()
-            for i in self.smsm_list:
-                i.wait()
+            for smsm in self.smsm_list:
+                if self.active_threads < self.max_threads:
+                    smsm.start()
+                    self.active_threads += 1
+                else:
+                    # Wait for a thread to finish before starting the next one.
+                    while self.active_threads >= self.max_threads:
+                        time.sleep(0.1)
+                    smsm.start()
+                    self.active_threads += 1
+            for smsm in self.smsm_list:
+                smsm.wait()
 
 
     def edit_music(self, i: Music):
@@ -170,6 +183,7 @@ class SearchModel(QThread):
         self.result_signal.emit(edit_dict)
         self.mutex.lock()
         self.smsm_cnt += 1
+        self.active_threads -= 1
         self.mutex.unlock()
         # 结束的信号
         if self.smsm_cnt == len(self.result_list):
